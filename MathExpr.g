@@ -51,14 +51,25 @@ INCLUDE_STRING:
 IDENTIFIER:
   LETTER (LETTER | DIGIT)*
 ;
- 
-type0:
-  IDENTIFIER ('[' ']')*
+
+DELIMITER:  ';'     ;
+
+typeBasic:
+'int' ('[' ']')*
+|'char' ('[' ']')*
+|'void'
+|'string' ('[' ']')*
+|'short' ('[' ']')*
+|'long' ('[' ']')*
+|'float' ('[' ']')*
+|'double' ('[' ']')*
+|'signed' ('[' ']')*
+|'unsigned' ('[' ']')*
 ;
+
 type:
-  type0  ->  TYPE[$type0.text]
+  typeBasic  ->  TYPE[$type0.text]
 ;
- 
 
 term:
   NUMBER
@@ -72,7 +83,7 @@ arguments:
   (rvalue (',' rvalue)*)?  ->  ^(ARGUMENTS rvalue*)
 ;
 functionCall:
-  IDENTIFIER '(' arguments ')'  ->  ^(CALL IDENTIFIER ARGUMENTS)
+  IDENTIFIER '(' arguments ')'  ->  ^(CALL IDENTIFIER arguments)
 ;
 
 arrayIndex0:
@@ -80,51 +91,72 @@ arrayIndex0:
 ;
 lvalue:  
   IDENTIFIER (arrayIndex0^ rvalue ']'!)*
-| IDENTIFIER
 ;
  
 rvalue:
   logic
 ;
- 
+
+increment:
+IDENTIFIER ('++'|'--')
+;
+
+ADD:            '+'     ;
+SUB:            '-'     ;
+MUL:            '*'     ;
+DIV:            '/'     ;
+BIT_AND:        '&'     ;
+BIT_OR:         '|'     ;
+ASSIGN:	        '='     ;
+GE_OP:          '>='    ;
+LE_OP:          '<='    ;
+NEQUALS:        '!='    ;
+EQUALS:         '=='    ;
+GT:             '>'     ;
+LT:             '<'     ;
+
 multiplex:
-  term (( '*' | '/' )^ term)*
+  term (( MUL | DIV )^ term)*
 ;
  
 add:
-  multiplex (('+' | '-')^ multiplex)*
+  multiplex ((ADD | SUB)^ multiplex)*
 ;
  
 logic:
-  add (('==' | '!=' | '>' | '<' | '>=' | '<=')^ add)?
+  add ((EQUALS | NEQUALS | GT | LT | GE_OP | LE_OP)^ add)?
 ; 
  
 expression:
-  lvalue '='^ rvalue ';'!
-| functionCall ';'!
-| RETURN^ rvalue ';'!
+  lvalue ASSIGN^ rvalue DELIMITER !
+| type IDENTIFIER
+| functionCall DELIMITER !
+| RETURN^ rvalue DELIMITER !
 | IF^ '('! rvalue ')'! expression (ELSE! expression)?
+| FOR^ '('! IDENTIFIER '=' rvalue DELIMITER! rvalue DELIMITER! (add|increment)? DELIMITER! ')' expression
 | WHILE^ '('! rvalue ')'! expression
 | '{'! expressionsList '}'!
 ;
  
 expressionsList:
-  (expression ';'*)*  ->  ^(BLOCK expression*)
+  (expression DELIMITER*)*  ->  ^(BLOCK expression*)
 ;
 
 argumentDeclaration:
   type IDENTIFIER^
 ;
+
 argumentsDeclaration:
   (argumentDeclaration (',' argumentDeclaration)*)?  ->  ^(SEMANTIC argumentDeclaration*)
 ;
+
 functionDeclaration:
-  type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ';'*
+  type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' DELIMITER*
     ->  ^(FUNCTION IDENTIFIER type argumentsDeclaration expressionsList)
 ;
  
 importDeclaration:
-  '#include' (s1=STRING | s2=INCLUDE_STRING)  ->  ^(INCLUDE $s1? $s2?)
+  '#include' (s1=STRING) -> ^(INCLUDE $s1)
 ;
  
 declaration:
