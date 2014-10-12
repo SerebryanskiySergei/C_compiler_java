@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 MathExpr.g 2014-10-12 22:09:25
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 MathExpr.g 2014-10-12 22:46:43
 package generated;
 
 import org.antlr.runtime.*;
@@ -12,48 +12,48 @@ import org.antlr.runtime.tree.*;
 
 public class MathExprParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RETURN", "IF", "ELSE", "WHILE", "PROGRAM", "INCLUDE", "TYPE", "SEMANTIC", "FUNCTION", "ARGUMENTS", "CALL", "BLOCK", "INDEX", "WS", "DIGIT", "LETTER", "NUMBER", "STRING", "INCLUDE_STRING", "IDENTIFIER", "'['", "']'", "'('", "')'", "','", "'*'", "'/'", "'+'", "'-'", "'=='", "'!='", "'>'", "'<'", "'>='", "'<='", "'='", "';'", "'{'", "'}'", "'#include'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RETURN", "IF", "ELSE", "WHILE", "PROGRAM", "INCLUDE", "TYPE", "SEMANTIC", "FUNCTION", "ARGUMENTS", "CALL", "BLOCK", "INDEX", "WS", "DIGIT", "LETTER", "NUMBER", "STRING", "INCLUDE_STRING", "IDENTIFIER", "DELIMITER", "'['", "']'", "'('", "')'", "','", "'*'", "'/'", "'+'", "'-'", "'=='", "'!='", "'>'", "'<'", "'>='", "'<='", "'='", "'{'", "'}'", "'#include'"
     };
     public static final int FUNCTION=12;
-    public static final int T__42=42;
-    public static final int T__43=43;
     public static final int INCLUDE_STRING=22;
-    public static final int T__40=40;
-    public static final int T__41=41;
     public static final int T__29=29;
     public static final int T__28=28;
-    public static final int ARGUMENTS=13;
     public static final int T__27=27;
-    public static final int WHILE=7;
     public static final int T__26=26;
+    public static final int WHILE=7;
     public static final int T__25=25;
-    public static final int T__24=24;
     public static final int LETTER=19;
+    public static final int EOF=-1;
+    public static final int IF=5;
+    public static final int TYPE=10;
+    public static final int INDEX=16;
+    public static final int IDENTIFIER=23;
+    public static final int INCLUDE=9;
+    public static final int RETURN=4;
+    public static final int DIGIT=18;
+    public static final int SEMANTIC=11;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int ARGUMENTS=13;
     public static final int ELSE=6;
     public static final int NUMBER=20;
-    public static final int EOF=-1;
-    public static final int TYPE=10;
-    public static final int IF=5;
-    public static final int INDEX=16;
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
-    public static final int WS=17;
     public static final int T__33=33;
+    public static final int WS=17;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
     public static final int T__37=37;
     public static final int T__38=38;
     public static final int T__39=39;
-    public static final int IDENTIFIER=23;
     public static final int BLOCK=15;
-    public static final int INCLUDE=9;
-    public static final int RETURN=4;
     public static final int PROGRAM=8;
     public static final int CALL=14;
-    public static final int DIGIT=18;
-    public static final int SEMANTIC=11;
+    public static final int DELIMITER=24;
     public static final int STRING=21;
 
     // delegates
@@ -87,7 +87,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "type0"
-    // MathExpr.g:55:1: type0 : IDENTIFIER ( '[' ']' )* ;
+    // MathExpr.g:58:1: type0 : IDENTIFIER ( '[' ']' )* ;
     public final MathExprParser.type0_return type0() throws RecognitionException {
         MathExprParser.type0_return retval = new MathExprParser.type0_return();
         retval.start = input.LT(1);
@@ -103,37 +103,37 @@ public class MathExprParser extends Parser {
         Object char_literal3_tree=null;
 
         try {
-            // MathExpr.g:55:6: ( IDENTIFIER ( '[' ']' )* )
-            // MathExpr.g:56:3: IDENTIFIER ( '[' ']' )*
+            // MathExpr.g:58:6: ( IDENTIFIER ( '[' ']' )* )
+            // MathExpr.g:59:3: IDENTIFIER ( '[' ']' )*
             {
             root_0 = (Object)adaptor.nil();
 
-            IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type0406); if (state.failed) return retval;
+            IDENTIFIER1=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_type0419); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER1_tree = (Object)adaptor.create(IDENTIFIER1);
             adaptor.addChild(root_0, IDENTIFIER1_tree);
             }
-            // MathExpr.g:56:14: ( '[' ']' )*
+            // MathExpr.g:59:14: ( '[' ']' )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==24) ) {
+                if ( (LA1_0==25) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // MathExpr.g:56:15: '[' ']'
+            	    // MathExpr.g:59:15: '[' ']'
             	    {
-            	    char_literal2=(Token)match(input,24,FOLLOW_24_in_type0409); if (state.failed) return retval;
+            	    char_literal2=(Token)match(input,25,FOLLOW_25_in_type0422); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal2_tree = (Object)adaptor.create(char_literal2);
             	    adaptor.addChild(root_0, char_literal2_tree);
             	    }
-            	    char_literal3=(Token)match(input,25,FOLLOW_25_in_type0411); if (state.failed) return retval;
+            	    char_literal3=(Token)match(input,26,FOLLOW_26_in_type0424); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    char_literal3_tree = (Object)adaptor.create(char_literal3);
             	    adaptor.addChild(root_0, char_literal3_tree);
@@ -176,7 +176,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "type"
-    // MathExpr.g:58:1: type : type0 -> TYPE[$type0.text] ;
+    // MathExpr.g:61:1: type : type0 -> TYPE[$type0.text] ;
     public final MathExprParser.type_return type() throws RecognitionException {
         MathExprParser.type_return retval = new MathExprParser.type_return();
         retval.start = input.LT(1);
@@ -188,10 +188,10 @@ public class MathExprParser extends Parser {
 
         RewriteRuleSubtreeStream stream_type0=new RewriteRuleSubtreeStream(adaptor,"rule type0");
         try {
-            // MathExpr.g:58:5: ( type0 -> TYPE[$type0.text] )
-            // MathExpr.g:59:3: type0
+            // MathExpr.g:61:5: ( type0 -> TYPE[$type0.text] )
+            // MathExpr.g:62:3: type0
             {
-            pushFollow(FOLLOW_type0_in_type422);
+            pushFollow(FOLLOW_type0_in_type435);
             type04=type0();
 
             state._fsp--;
@@ -211,7 +211,7 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 59:10: -> TYPE[$type0.text]
+            // 62:10: -> TYPE[$type0.text]
             {
                 adaptor.addChild(root_0, (Object)adaptor.create(TYPE, (type04!=null?input.toString(type04.start,type04.stop):null)));
 
@@ -246,7 +246,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "term"
-    // MathExpr.g:63:1: term : ( NUMBER | STRING | lvalue | functionCall | '(' logic ')' );
+    // MathExpr.g:65:1: term : ( NUMBER | STRING | lvalue | functionCall | '(' logic ')' );
     public final MathExprParser.term_return term() throws RecognitionException {
         MathExprParser.term_return retval = new MathExprParser.term_return();
         retval.start = input.LT(1);
@@ -270,7 +270,7 @@ public class MathExprParser extends Parser {
         Object char_literal11_tree=null;
 
         try {
-            // MathExpr.g:63:5: ( NUMBER | STRING | lvalue | functionCall | '(' logic ')' )
+            // MathExpr.g:65:5: ( NUMBER | STRING | lvalue | functionCall | '(' logic ')' )
             int alt2=5;
             switch ( input.LA(1) ) {
             case NUMBER:
@@ -287,10 +287,10 @@ public class MathExprParser extends Parser {
                 {
                 int LA2_3 = input.LA(2);
 
-                if ( (LA2_3==26) ) {
+                if ( (LA2_3==27) ) {
                     alt2=4;
                 }
-                else if ( (LA2_3==EOF||(LA2_3>=24 && LA2_3<=25)||(LA2_3>=27 && LA2_3<=38)||LA2_3==40) ) {
+                else if ( (LA2_3==EOF||(LA2_3>=DELIMITER && LA2_3<=26)||(LA2_3>=28 && LA2_3<=39)) ) {
                     alt2=3;
                 }
                 else {
@@ -302,7 +302,7 @@ public class MathExprParser extends Parser {
                 }
                 }
                 break;
-            case 26:
+            case 27:
                 {
                 alt2=5;
                 }
@@ -317,11 +317,11 @@ public class MathExprParser extends Parser {
 
             switch (alt2) {
                 case 1 :
-                    // MathExpr.g:64:3: NUMBER
+                    // MathExpr.g:66:3: NUMBER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    NUMBER5=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_term441); if (state.failed) return retval;
+                    NUMBER5=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_term452); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     NUMBER5_tree = (Object)adaptor.create(NUMBER5);
                     adaptor.addChild(root_0, NUMBER5_tree);
@@ -330,11 +330,11 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // MathExpr.g:65:3: STRING
+                    // MathExpr.g:67:3: STRING
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    STRING6=(Token)match(input,STRING,FOLLOW_STRING_in_term445); if (state.failed) return retval;
+                    STRING6=(Token)match(input,STRING,FOLLOW_STRING_in_term456); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     STRING6_tree = (Object)adaptor.create(STRING6);
                     adaptor.addChild(root_0, STRING6_tree);
@@ -343,11 +343,11 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // MathExpr.g:66:3: lvalue
+                    // MathExpr.g:68:3: lvalue
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_lvalue_in_term449);
+                    pushFollow(FOLLOW_lvalue_in_term460);
                     lvalue7=lvalue();
 
                     state._fsp--;
@@ -357,11 +357,11 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // MathExpr.g:67:3: functionCall
+                    // MathExpr.g:69:3: functionCall
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_functionCall_in_term453);
+                    pushFollow(FOLLOW_functionCall_in_term464);
                     functionCall8=functionCall();
 
                     state._fsp--;
@@ -371,18 +371,18 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // MathExpr.g:68:3: '(' logic ')'
+                    // MathExpr.g:70:3: '(' logic ')'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal9=(Token)match(input,26,FOLLOW_26_in_term457); if (state.failed) return retval;
-                    pushFollow(FOLLOW_logic_in_term460);
+                    char_literal9=(Token)match(input,27,FOLLOW_27_in_term468); if (state.failed) return retval;
+                    pushFollow(FOLLOW_logic_in_term471);
                     logic10=logic();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, logic10.getTree());
-                    char_literal11=(Token)match(input,27,FOLLOW_27_in_term462); if (state.failed) return retval;
+                    char_literal11=(Token)match(input,28,FOLLOW_28_in_term473); if (state.failed) return retval;
 
                     }
                     break;
@@ -414,7 +414,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "arguments"
-    // MathExpr.g:71:1: arguments : ( rvalue ( ',' rvalue )* )? -> ^( ARGUMENTS ( rvalue )* ) ;
+    // MathExpr.g:73:1: arguments : ( rvalue ( ',' rvalue )* )? -> ^( ARGUMENTS ( rvalue )* ) ;
     public final MathExprParser.arguments_return arguments() throws RecognitionException {
         MathExprParser.arguments_return retval = new MathExprParser.arguments_return();
         retval.start = input.LT(1);
@@ -428,48 +428,48 @@ public class MathExprParser extends Parser {
 
 
         Object char_literal13_tree=null;
-        RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
+        RewriteRuleTokenStream stream_29=new RewriteRuleTokenStream(adaptor,"token 29");
         RewriteRuleSubtreeStream stream_rvalue=new RewriteRuleSubtreeStream(adaptor,"rule rvalue");
         try {
-            // MathExpr.g:71:10: ( ( rvalue ( ',' rvalue )* )? -> ^( ARGUMENTS ( rvalue )* ) )
-            // MathExpr.g:72:3: ( rvalue ( ',' rvalue )* )?
+            // MathExpr.g:73:10: ( ( rvalue ( ',' rvalue )* )? -> ^( ARGUMENTS ( rvalue )* ) )
+            // MathExpr.g:74:3: ( rvalue ( ',' rvalue )* )?
             {
-            // MathExpr.g:72:3: ( rvalue ( ',' rvalue )* )?
+            // MathExpr.g:74:3: ( rvalue ( ',' rvalue )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=NUMBER && LA4_0<=STRING)||LA4_0==IDENTIFIER||LA4_0==26) ) {
+            if ( ((LA4_0>=NUMBER && LA4_0<=STRING)||LA4_0==IDENTIFIER||LA4_0==27) ) {
                 alt4=1;
             }
             switch (alt4) {
                 case 1 :
-                    // MathExpr.g:72:4: rvalue ( ',' rvalue )*
+                    // MathExpr.g:74:4: rvalue ( ',' rvalue )*
                     {
-                    pushFollow(FOLLOW_rvalue_in_arguments475);
+                    pushFollow(FOLLOW_rvalue_in_arguments486);
                     rvalue12=rvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_rvalue.add(rvalue12.getTree());
-                    // MathExpr.g:72:11: ( ',' rvalue )*
+                    // MathExpr.g:74:11: ( ',' rvalue )*
                     loop3:
                     do {
                         int alt3=2;
                         int LA3_0 = input.LA(1);
 
-                        if ( (LA3_0==28) ) {
+                        if ( (LA3_0==29) ) {
                             alt3=1;
                         }
 
 
                         switch (alt3) {
                     	case 1 :
-                    	    // MathExpr.g:72:12: ',' rvalue
+                    	    // MathExpr.g:74:12: ',' rvalue
                     	    {
-                    	    char_literal13=(Token)match(input,28,FOLLOW_28_in_arguments478); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_28.add(char_literal13);
+                    	    char_literal13=(Token)match(input,29,FOLLOW_29_in_arguments489); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_29.add(char_literal13);
 
-                    	    pushFollow(FOLLOW_rvalue_in_arguments480);
+                    	    pushFollow(FOLLOW_rvalue_in_arguments491);
                     	    rvalue14=rvalue();
 
                     	    state._fsp--;
@@ -504,14 +504,14 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 72:28: -> ^( ARGUMENTS ( rvalue )* )
+            // 74:28: -> ^( ARGUMENTS ( rvalue )* )
             {
-                // MathExpr.g:72:32: ^( ARGUMENTS ( rvalue )* )
+                // MathExpr.g:74:32: ^( ARGUMENTS ( rvalue )* )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(ARGUMENTS, "ARGUMENTS"), root_1);
 
-                // MathExpr.g:72:44: ( rvalue )*
+                // MathExpr.g:74:44: ( rvalue )*
                 while ( stream_rvalue.hasNext() ) {
                     adaptor.addChild(root_1, stream_rvalue.nextTree());
 
@@ -552,7 +552,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "functionCall"
-    // MathExpr.g:74:1: functionCall : IDENTIFIER '(' arguments ')' -> ^( CALL IDENTIFIER ARGUMENTS ) ;
+    // MathExpr.g:76:1: functionCall : IDENTIFIER '(' arguments ')' -> ^( CALL IDENTIFIER arguments ) ;
     public final MathExprParser.functionCall_return functionCall() throws RecognitionException {
         MathExprParser.functionCall_return retval = new MathExprParser.functionCall_return();
         retval.start = input.LT(1);
@@ -569,32 +569,32 @@ public class MathExprParser extends Parser {
         Object char_literal16_tree=null;
         Object char_literal18_tree=null;
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
-        RewriteRuleTokenStream stream_26=new RewriteRuleTokenStream(adaptor,"token 26");
         RewriteRuleTokenStream stream_27=new RewriteRuleTokenStream(adaptor,"token 27");
+        RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
         RewriteRuleSubtreeStream stream_arguments=new RewriteRuleSubtreeStream(adaptor,"rule arguments");
         try {
-            // MathExpr.g:74:13: ( IDENTIFIER '(' arguments ')' -> ^( CALL IDENTIFIER ARGUMENTS ) )
-            // MathExpr.g:75:3: IDENTIFIER '(' arguments ')'
+            // MathExpr.g:76:13: ( IDENTIFIER '(' arguments ')' -> ^( CALL IDENTIFIER arguments ) )
+            // MathExpr.g:77:3: IDENTIFIER '(' arguments ')'
             {
-            IDENTIFIER15=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_functionCall504); if (state.failed) return retval; 
+            IDENTIFIER15=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_functionCall515); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER15);
 
-            char_literal16=(Token)match(input,26,FOLLOW_26_in_functionCall506); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_26.add(char_literal16);
+            char_literal16=(Token)match(input,27,FOLLOW_27_in_functionCall517); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_27.add(char_literal16);
 
-            pushFollow(FOLLOW_arguments_in_functionCall508);
+            pushFollow(FOLLOW_arguments_in_functionCall519);
             arguments17=arguments();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_arguments.add(arguments17.getTree());
-            char_literal18=(Token)match(input,27,FOLLOW_27_in_functionCall510); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_27.add(char_literal18);
+            char_literal18=(Token)match(input,28,FOLLOW_28_in_functionCall521); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_28.add(char_literal18);
 
 
 
             // AST REWRITE
-            // elements: IDENTIFIER
+            // elements: arguments, IDENTIFIER
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -605,15 +605,15 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 75:33: -> ^( CALL IDENTIFIER ARGUMENTS )
+            // 77:33: -> ^( CALL IDENTIFIER arguments )
             {
-                // MathExpr.g:75:37: ^( CALL IDENTIFIER ARGUMENTS )
+                // MathExpr.g:77:37: ^( CALL IDENTIFIER arguments )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(CALL, "CALL"), root_1);
 
                 adaptor.addChild(root_1, stream_IDENTIFIER.nextNode());
-                adaptor.addChild(root_1, (Object)adaptor.create(ARGUMENTS, "ARGUMENTS"));
+                adaptor.addChild(root_1, stream_arguments.nextTree());
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -649,7 +649,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "arrayIndex0"
-    // MathExpr.g:78:1: arrayIndex0 : '[' -> INDEX[\"[]\"] ;
+    // MathExpr.g:80:1: arrayIndex0 : '[' -> INDEX[\"[]\"] ;
     public final MathExprParser.arrayIndex0_return arrayIndex0() throws RecognitionException {
         MathExprParser.arrayIndex0_return retval = new MathExprParser.arrayIndex0_return();
         retval.start = input.LT(1);
@@ -659,14 +659,14 @@ public class MathExprParser extends Parser {
         Token char_literal19=null;
 
         Object char_literal19_tree=null;
-        RewriteRuleTokenStream stream_24=new RewriteRuleTokenStream(adaptor,"token 24");
+        RewriteRuleTokenStream stream_25=new RewriteRuleTokenStream(adaptor,"token 25");
 
         try {
-            // MathExpr.g:78:12: ( '[' -> INDEX[\"[]\"] )
-            // MathExpr.g:79:3: '['
+            // MathExpr.g:80:12: ( '[' -> INDEX[\"[]\"] )
+            // MathExpr.g:81:3: '['
             {
-            char_literal19=(Token)match(input,24,FOLLOW_24_in_arrayIndex0532); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_24.add(char_literal19);
+            char_literal19=(Token)match(input,25,FOLLOW_25_in_arrayIndex0543); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_25.add(char_literal19);
 
 
 
@@ -682,7 +682,7 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 79:8: -> INDEX[\"[]\"]
+            // 81:8: -> INDEX[\"[]\"]
             {
                 adaptor.addChild(root_0, (Object)adaptor.create(INDEX, "[]"));
 
@@ -717,7 +717,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "lvalue"
-    // MathExpr.g:81:1: lvalue : ( IDENTIFIER ( arrayIndex0 rvalue ']' )* | IDENTIFIER );
+    // MathExpr.g:83:1: lvalue : ( IDENTIFIER ( arrayIndex0 rvalue ']' )* | IDENTIFIER );
     public final MathExprParser.lvalue_return lvalue() throws RecognitionException {
         MathExprParser.lvalue_return retval = new MathExprParser.lvalue_return();
         retval.start = input.LT(1);
@@ -737,7 +737,7 @@ public class MathExprParser extends Parser {
         Object IDENTIFIER24_tree=null;
 
         try {
-            // MathExpr.g:81:7: ( IDENTIFIER ( arrayIndex0 rvalue ']' )* | IDENTIFIER )
+            // MathExpr.g:83:7: ( IDENTIFIER ( arrayIndex0 rvalue ']' )* | IDENTIFIER )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -767,43 +767,43 @@ public class MathExprParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // MathExpr.g:82:3: IDENTIFIER ( arrayIndex0 rvalue ']' )*
+                    // MathExpr.g:84:3: IDENTIFIER ( arrayIndex0 rvalue ']' )*
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IDENTIFIER20=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue550); if (state.failed) return retval;
+                    IDENTIFIER20=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue561); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER20_tree = (Object)adaptor.create(IDENTIFIER20);
                     adaptor.addChild(root_0, IDENTIFIER20_tree);
                     }
-                    // MathExpr.g:82:14: ( arrayIndex0 rvalue ']' )*
+                    // MathExpr.g:84:14: ( arrayIndex0 rvalue ']' )*
                     loop5:
                     do {
                         int alt5=2;
                         int LA5_0 = input.LA(1);
 
-                        if ( (LA5_0==24) ) {
+                        if ( (LA5_0==25) ) {
                             alt5=1;
                         }
 
 
                         switch (alt5) {
                     	case 1 :
-                    	    // MathExpr.g:82:15: arrayIndex0 rvalue ']'
+                    	    // MathExpr.g:84:15: arrayIndex0 rvalue ']'
                     	    {
-                    	    pushFollow(FOLLOW_arrayIndex0_in_lvalue553);
+                    	    pushFollow(FOLLOW_arrayIndex0_in_lvalue564);
                     	    arrayIndex021=arrayIndex0();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(arrayIndex021.getTree(), root_0);
-                    	    pushFollow(FOLLOW_rvalue_in_lvalue556);
+                    	    pushFollow(FOLLOW_rvalue_in_lvalue567);
                     	    rvalue22=rvalue();
 
                     	    state._fsp--;
                     	    if (state.failed) return retval;
                     	    if ( state.backtracking==0 ) adaptor.addChild(root_0, rvalue22.getTree());
-                    	    char_literal23=(Token)match(input,25,FOLLOW_25_in_lvalue558); if (state.failed) return retval;
+                    	    char_literal23=(Token)match(input,26,FOLLOW_26_in_lvalue569); if (state.failed) return retval;
 
                     	    }
                     	    break;
@@ -817,11 +817,11 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // MathExpr.g:83:3: IDENTIFIER
+                    // MathExpr.g:85:3: IDENTIFIER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue565); if (state.failed) return retval;
+                    IDENTIFIER24=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_lvalue576); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IDENTIFIER24_tree = (Object)adaptor.create(IDENTIFIER24);
                     adaptor.addChild(root_0, IDENTIFIER24_tree);
@@ -857,7 +857,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "rvalue"
-    // MathExpr.g:86:1: rvalue : logic ;
+    // MathExpr.g:88:1: rvalue : logic ;
     public final MathExprParser.rvalue_return rvalue() throws RecognitionException {
         MathExprParser.rvalue_return retval = new MathExprParser.rvalue_return();
         retval.start = input.LT(1);
@@ -869,12 +869,12 @@ public class MathExprParser extends Parser {
 
 
         try {
-            // MathExpr.g:86:7: ( logic )
-            // MathExpr.g:87:3: logic
+            // MathExpr.g:88:7: ( logic )
+            // MathExpr.g:89:3: logic
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_logic_in_rvalue576);
+            pushFollow(FOLLOW_logic_in_rvalue587);
             logic25=logic();
 
             state._fsp--;
@@ -909,7 +909,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "multiplex"
-    // MathExpr.g:90:1: multiplex : term ( ( '*' | '/' ) term )* ;
+    // MathExpr.g:92:1: multiplex : term ( ( '*' | '/' ) term )* ;
     public final MathExprParser.multiplex_return multiplex() throws RecognitionException {
         MathExprParser.multiplex_return retval = new MathExprParser.multiplex_return();
         retval.start = input.LT(1);
@@ -925,35 +925,35 @@ public class MathExprParser extends Parser {
         Object set27_tree=null;
 
         try {
-            // MathExpr.g:90:10: ( term ( ( '*' | '/' ) term )* )
-            // MathExpr.g:91:3: term ( ( '*' | '/' ) term )*
+            // MathExpr.g:92:10: ( term ( ( '*' | '/' ) term )* )
+            // MathExpr.g:93:3: term ( ( '*' | '/' ) term )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_term_in_multiplex587);
+            pushFollow(FOLLOW_term_in_multiplex598);
             term26=term();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, term26.getTree());
-            // MathExpr.g:91:8: ( ( '*' | '/' ) term )*
+            // MathExpr.g:93:8: ( ( '*' | '/' ) term )*
             loop7:
             do {
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( ((LA7_0>=29 && LA7_0<=30)) ) {
+                if ( ((LA7_0>=30 && LA7_0<=31)) ) {
                     alt7=1;
                 }
 
 
                 switch (alt7) {
             	case 1 :
-            	    // MathExpr.g:91:9: ( '*' | '/' ) term
+            	    // MathExpr.g:93:9: ( '*' | '/' ) term
             	    {
             	    set27=(Token)input.LT(1);
             	    set27=(Token)input.LT(1);
-            	    if ( (input.LA(1)>=29 && input.LA(1)<=30) ) {
+            	    if ( (input.LA(1)>=30 && input.LA(1)<=31) ) {
             	        input.consume();
             	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set27), root_0);
             	        state.errorRecovery=false;state.failed=false;
@@ -964,7 +964,7 @@ public class MathExprParser extends Parser {
             	        throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_term_in_multiplex601);
+            	    pushFollow(FOLLOW_term_in_multiplex612);
             	    term28=term();
 
             	    state._fsp--;
@@ -1008,7 +1008,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "add"
-    // MathExpr.g:94:1: add : multiplex ( ( '+' | '-' ) multiplex )* ;
+    // MathExpr.g:96:1: add : multiplex ( ( '+' | '-' ) multiplex )* ;
     public final MathExprParser.add_return add() throws RecognitionException {
         MathExprParser.add_return retval = new MathExprParser.add_return();
         retval.start = input.LT(1);
@@ -1024,35 +1024,35 @@ public class MathExprParser extends Parser {
         Object set30_tree=null;
 
         try {
-            // MathExpr.g:94:4: ( multiplex ( ( '+' | '-' ) multiplex )* )
-            // MathExpr.g:95:3: multiplex ( ( '+' | '-' ) multiplex )*
+            // MathExpr.g:96:4: ( multiplex ( ( '+' | '-' ) multiplex )* )
+            // MathExpr.g:97:3: multiplex ( ( '+' | '-' ) multiplex )*
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_multiplex_in_add614);
+            pushFollow(FOLLOW_multiplex_in_add625);
             multiplex29=multiplex();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplex29.getTree());
-            // MathExpr.g:95:13: ( ( '+' | '-' ) multiplex )*
+            // MathExpr.g:97:13: ( ( '+' | '-' ) multiplex )*
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( ((LA8_0>=31 && LA8_0<=32)) ) {
+                if ( ((LA8_0>=32 && LA8_0<=33)) ) {
                     alt8=1;
                 }
 
 
                 switch (alt8) {
             	case 1 :
-            	    // MathExpr.g:95:14: ( '+' | '-' ) multiplex
+            	    // MathExpr.g:97:14: ( '+' | '-' ) multiplex
             	    {
             	    set30=(Token)input.LT(1);
             	    set30=(Token)input.LT(1);
-            	    if ( (input.LA(1)>=31 && input.LA(1)<=32) ) {
+            	    if ( (input.LA(1)>=32 && input.LA(1)<=33) ) {
             	        input.consume();
             	        if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set30), root_0);
             	        state.errorRecovery=false;state.failed=false;
@@ -1063,7 +1063,7 @@ public class MathExprParser extends Parser {
             	        throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_multiplex_in_add626);
+            	    pushFollow(FOLLOW_multiplex_in_add637);
             	    multiplex31=multiplex();
 
             	    state._fsp--;
@@ -1107,7 +1107,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "logic"
-    // MathExpr.g:98:1: logic : add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )? ;
+    // MathExpr.g:100:1: logic : add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )? ;
     public final MathExprParser.logic_return logic() throws RecognitionException {
         MathExprParser.logic_return retval = new MathExprParser.logic_return();
         retval.start = input.LT(1);
@@ -1123,31 +1123,31 @@ public class MathExprParser extends Parser {
         Object set33_tree=null;
 
         try {
-            // MathExpr.g:98:6: ( add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )? )
-            // MathExpr.g:99:3: add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )?
+            // MathExpr.g:100:6: ( add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )? )
+            // MathExpr.g:101:3: add ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )?
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_add_in_logic639);
+            pushFollow(FOLLOW_add_in_logic650);
             add32=add();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, add32.getTree());
-            // MathExpr.g:99:7: ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )?
+            // MathExpr.g:101:7: ( ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( ((LA9_0>=33 && LA9_0<=38)) ) {
+            if ( ((LA9_0>=34 && LA9_0<=39)) ) {
                 alt9=1;
             }
             switch (alt9) {
                 case 1 :
-                    // MathExpr.g:99:8: ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add
+                    // MathExpr.g:101:8: ( '==' | '!=' | '>' | '<' | '>=' | '<=' ) add
                     {
                     set33=(Token)input.LT(1);
                     set33=(Token)input.LT(1);
-                    if ( (input.LA(1)>=33 && input.LA(1)<=38) ) {
+                    if ( (input.LA(1)>=34 && input.LA(1)<=39) ) {
                         input.consume();
                         if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot((Object)adaptor.create(set33), root_0);
                         state.errorRecovery=false;state.failed=false;
@@ -1158,7 +1158,7 @@ public class MathExprParser extends Parser {
                         throw mse;
                     }
 
-                    pushFollow(FOLLOW_add_in_logic667);
+                    pushFollow(FOLLOW_add_in_logic678);
                     add34=add();
 
                     state._fsp--;
@@ -1199,7 +1199,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "expression"
-    // MathExpr.g:102:1: expression : ( lvalue '=' rvalue ';' | functionCall ';' | RETURN rvalue ';' | IF '(' rvalue ')' expression ( ELSE expression )? | WHILE '(' rvalue ')' expression | '{' expressionsList '}' );
+    // MathExpr.g:104:1: expression : ( lvalue '=' rvalue DELIMITER | functionCall DELIMITER | RETURN rvalue DELIMITER | IF '(' rvalue ')' expression ( ELSE expression )? | WHILE '(' rvalue ')' expression | '{' expressionsList '}' );
     public final MathExprParser.expression_return expression() throws RecognitionException {
         MathExprParser.expression_return retval = new MathExprParser.expression_return();
         retval.start = input.LT(1);
@@ -1207,10 +1207,10 @@ public class MathExprParser extends Parser {
         Object root_0 = null;
 
         Token char_literal36=null;
-        Token char_literal38=null;
-        Token char_literal40=null;
+        Token DELIMITER38=null;
+        Token DELIMITER40=null;
         Token RETURN41=null;
-        Token char_literal43=null;
+        Token DELIMITER43=null;
         Token IF44=null;
         Token char_literal45=null;
         Token char_literal47=null;
@@ -1242,10 +1242,10 @@ public class MathExprParser extends Parser {
 
 
         Object char_literal36_tree=null;
-        Object char_literal38_tree=null;
-        Object char_literal40_tree=null;
+        Object DELIMITER38_tree=null;
+        Object DELIMITER40_tree=null;
         Object RETURN41_tree=null;
-        Object char_literal43_tree=null;
+        Object DELIMITER43_tree=null;
         Object IF44_tree=null;
         Object char_literal45_tree=null;
         Object char_literal47_tree=null;
@@ -1257,17 +1257,17 @@ public class MathExprParser extends Parser {
         Object char_literal58_tree=null;
 
         try {
-            // MathExpr.g:102:11: ( lvalue '=' rvalue ';' | functionCall ';' | RETURN rvalue ';' | IF '(' rvalue ')' expression ( ELSE expression )? | WHILE '(' rvalue ')' expression | '{' expressionsList '}' )
+            // MathExpr.g:104:11: ( lvalue '=' rvalue DELIMITER | functionCall DELIMITER | RETURN rvalue DELIMITER | IF '(' rvalue ')' expression ( ELSE expression )? | WHILE '(' rvalue ')' expression | '{' expressionsList '}' )
             int alt11=6;
             switch ( input.LA(1) ) {
             case IDENTIFIER:
                 {
                 int LA11_1 = input.LA(2);
 
-                if ( (LA11_1==26) ) {
+                if ( (LA11_1==27) ) {
                     alt11=2;
                 }
-                else if ( (LA11_1==24||LA11_1==39) ) {
+                else if ( (LA11_1==25||LA11_1==40) ) {
                     alt11=1;
                 }
                 else {
@@ -1309,91 +1309,91 @@ public class MathExprParser extends Parser {
 
             switch (alt11) {
                 case 1 :
-                    // MathExpr.g:103:3: lvalue '=' rvalue ';'
+                    // MathExpr.g:105:3: lvalue '=' rvalue DELIMITER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_lvalue_in_expression681);
+                    pushFollow(FOLLOW_lvalue_in_expression692);
                     lvalue35=lvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, lvalue35.getTree());
-                    char_literal36=(Token)match(input,39,FOLLOW_39_in_expression683); if (state.failed) return retval;
+                    char_literal36=(Token)match(input,40,FOLLOW_40_in_expression694); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal36_tree = (Object)adaptor.create(char_literal36);
                     root_0 = (Object)adaptor.becomeRoot(char_literal36_tree, root_0);
                     }
-                    pushFollow(FOLLOW_rvalue_in_expression686);
+                    pushFollow(FOLLOW_rvalue_in_expression697);
                     rvalue37=rvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, rvalue37.getTree());
-                    char_literal38=(Token)match(input,40,FOLLOW_40_in_expression688); if (state.failed) return retval;
+                    DELIMITER38=(Token)match(input,DELIMITER,FOLLOW_DELIMITER_in_expression699); if (state.failed) return retval;
 
                     }
                     break;
                 case 2 :
-                    // MathExpr.g:104:3: functionCall ';'
+                    // MathExpr.g:106:3: functionCall DELIMITER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    pushFollow(FOLLOW_functionCall_in_expression693);
+                    pushFollow(FOLLOW_functionCall_in_expression705);
                     functionCall39=functionCall();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, functionCall39.getTree());
-                    char_literal40=(Token)match(input,40,FOLLOW_40_in_expression695); if (state.failed) return retval;
+                    DELIMITER40=(Token)match(input,DELIMITER,FOLLOW_DELIMITER_in_expression707); if (state.failed) return retval;
 
                     }
                     break;
                 case 3 :
-                    // MathExpr.g:105:3: RETURN rvalue ';'
+                    // MathExpr.g:107:3: RETURN rvalue DELIMITER
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    RETURN41=(Token)match(input,RETURN,FOLLOW_RETURN_in_expression700); if (state.failed) return retval;
+                    RETURN41=(Token)match(input,RETURN,FOLLOW_RETURN_in_expression713); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     RETURN41_tree = (Object)adaptor.create(RETURN41);
                     root_0 = (Object)adaptor.becomeRoot(RETURN41_tree, root_0);
                     }
-                    pushFollow(FOLLOW_rvalue_in_expression703);
+                    pushFollow(FOLLOW_rvalue_in_expression716);
                     rvalue42=rvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, rvalue42.getTree());
-                    char_literal43=(Token)match(input,40,FOLLOW_40_in_expression705); if (state.failed) return retval;
+                    DELIMITER43=(Token)match(input,DELIMITER,FOLLOW_DELIMITER_in_expression718); if (state.failed) return retval;
 
                     }
                     break;
                 case 4 :
-                    // MathExpr.g:106:3: IF '(' rvalue ')' expression ( ELSE expression )?
+                    // MathExpr.g:108:3: IF '(' rvalue ')' expression ( ELSE expression )?
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    IF44=(Token)match(input,IF,FOLLOW_IF_in_expression710); if (state.failed) return retval;
+                    IF44=(Token)match(input,IF,FOLLOW_IF_in_expression724); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     IF44_tree = (Object)adaptor.create(IF44);
                     root_0 = (Object)adaptor.becomeRoot(IF44_tree, root_0);
                     }
-                    char_literal45=(Token)match(input,26,FOLLOW_26_in_expression713); if (state.failed) return retval;
-                    pushFollow(FOLLOW_rvalue_in_expression716);
+                    char_literal45=(Token)match(input,27,FOLLOW_27_in_expression727); if (state.failed) return retval;
+                    pushFollow(FOLLOW_rvalue_in_expression730);
                     rvalue46=rvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, rvalue46.getTree());
-                    char_literal47=(Token)match(input,27,FOLLOW_27_in_expression718); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expression_in_expression721);
+                    char_literal47=(Token)match(input,28,FOLLOW_28_in_expression732); if (state.failed) return retval;
+                    pushFollow(FOLLOW_expression_in_expression735);
                     expression48=expression();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expression48.getTree());
-                    // MathExpr.g:106:35: ( ELSE expression )?
+                    // MathExpr.g:108:35: ( ELSE expression )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1406,10 +1406,10 @@ public class MathExprParser extends Parser {
                     }
                     switch (alt10) {
                         case 1 :
-                            // MathExpr.g:106:36: ELSE expression
+                            // MathExpr.g:108:36: ELSE expression
                             {
-                            ELSE49=(Token)match(input,ELSE,FOLLOW_ELSE_in_expression724); if (state.failed) return retval;
-                            pushFollow(FOLLOW_expression_in_expression727);
+                            ELSE49=(Token)match(input,ELSE,FOLLOW_ELSE_in_expression738); if (state.failed) return retval;
+                            pushFollow(FOLLOW_expression_in_expression741);
                             expression50=expression();
 
                             state._fsp--;
@@ -1425,24 +1425,24 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // MathExpr.g:107:3: WHILE '(' rvalue ')' expression
+                    // MathExpr.g:109:3: WHILE '(' rvalue ')' expression
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    WHILE51=(Token)match(input,WHILE,FOLLOW_WHILE_in_expression733); if (state.failed) return retval;
+                    WHILE51=(Token)match(input,WHILE,FOLLOW_WHILE_in_expression747); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     WHILE51_tree = (Object)adaptor.create(WHILE51);
                     root_0 = (Object)adaptor.becomeRoot(WHILE51_tree, root_0);
                     }
-                    char_literal52=(Token)match(input,26,FOLLOW_26_in_expression736); if (state.failed) return retval;
-                    pushFollow(FOLLOW_rvalue_in_expression739);
+                    char_literal52=(Token)match(input,27,FOLLOW_27_in_expression750); if (state.failed) return retval;
+                    pushFollow(FOLLOW_rvalue_in_expression753);
                     rvalue53=rvalue();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, rvalue53.getTree());
-                    char_literal54=(Token)match(input,27,FOLLOW_27_in_expression741); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expression_in_expression744);
+                    char_literal54=(Token)match(input,28,FOLLOW_28_in_expression755); if (state.failed) return retval;
+                    pushFollow(FOLLOW_expression_in_expression758);
                     expression55=expression();
 
                     state._fsp--;
@@ -1452,18 +1452,18 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // MathExpr.g:108:3: '{' expressionsList '}'
+                    // MathExpr.g:110:3: '{' expressionsList '}'
                     {
                     root_0 = (Object)adaptor.nil();
 
-                    char_literal56=(Token)match(input,41,FOLLOW_41_in_expression748); if (state.failed) return retval;
-                    pushFollow(FOLLOW_expressionsList_in_expression751);
+                    char_literal56=(Token)match(input,41,FOLLOW_41_in_expression762); if (state.failed) return retval;
+                    pushFollow(FOLLOW_expressionsList_in_expression765);
                     expressionsList57=expressionsList();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionsList57.getTree());
-                    char_literal58=(Token)match(input,42,FOLLOW_42_in_expression753); if (state.failed) return retval;
+                    char_literal58=(Token)match(input,42,FOLLOW_42_in_expression767); if (state.failed) return retval;
 
                     }
                     break;
@@ -1495,7 +1495,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "expressionsList"
-    // MathExpr.g:111:1: expressionsList : ( expression ( ';' )* )* -> ^( BLOCK ( expression )* ) ;
+    // MathExpr.g:113:1: expressionsList : ( expression ( ';' )* )* -> ^( BLOCK ( expression )* ) ;
     public final MathExprParser.expressionsList_return expressionsList() throws RecognitionException {
         MathExprParser.expressionsList_return retval = new MathExprParser.expressionsList_return();
         retval.start = input.LT(1);
@@ -1507,13 +1507,13 @@ public class MathExprParser extends Parser {
 
 
         Object char_literal60_tree=null;
-        RewriteRuleTokenStream stream_40=new RewriteRuleTokenStream(adaptor,"token 40");
+        RewriteRuleTokenStream stream_DELIMITER=new RewriteRuleTokenStream(adaptor,"token DELIMITER");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         try {
-            // MathExpr.g:111:16: ( ( expression ( ';' )* )* -> ^( BLOCK ( expression )* ) )
-            // MathExpr.g:112:3: ( expression ( ';' )* )*
+            // MathExpr.g:113:16: ( ( expression ( ';' )* )* -> ^( BLOCK ( expression )* ) )
+            // MathExpr.g:114:3: ( expression ( ';' )* )*
             {
-            // MathExpr.g:112:3: ( expression ( ';' )* )*
+            // MathExpr.g:114:3: ( expression ( ';' )* )*
             loop13:
             do {
                 int alt13=2;
@@ -1526,21 +1526,21 @@ public class MathExprParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // MathExpr.g:112:4: expression ( ';' )*
+            	    // MathExpr.g:114:4: expression ( ';' )*
             	    {
-            	    pushFollow(FOLLOW_expression_in_expressionsList766);
+            	    pushFollow(FOLLOW_expression_in_expressionsList780);
             	    expression59=expression();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) stream_expression.add(expression59.getTree());
-            	    // MathExpr.g:112:15: ( ';' )*
+            	    // MathExpr.g:114:15: ( ';' )*
             	    loop12:
             	    do {
             	        int alt12=2;
             	        int LA12_0 = input.LA(1);
 
-            	        if ( (LA12_0==40) ) {
+            	        if ( (LA12_0==DELIMITER) ) {
             	            alt12=1;
             	        }
 
@@ -1549,8 +1549,8 @@ public class MathExprParser extends Parser {
             	    	case 1 :
             	    	    // MathExpr.g:0:0: ';'
             	    	    {
-            	    	    char_literal60=(Token)match(input,40,FOLLOW_40_in_expressionsList768); if (state.failed) return retval; 
-            	    	    if ( state.backtracking==0 ) stream_40.add(char_literal60);
+            	    	    char_literal60=(Token)match(input,DELIMITER,FOLLOW_DELIMITER_in_expressionsList782); if (state.failed) return retval; 
+            	    	    if ( state.backtracking==0 ) stream_DELIMITER.add(char_literal60);
 
 
             	    	    }
@@ -1584,14 +1584,14 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 112:23: -> ^( BLOCK ( expression )* )
+            // 114:23: -> ^( BLOCK ( expression )* )
             {
-                // MathExpr.g:112:27: ^( BLOCK ( expression )* )
+                // MathExpr.g:114:27: ^( BLOCK ( expression )* )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(BLOCK, "BLOCK"), root_1);
 
-                // MathExpr.g:112:35: ( expression )*
+                // MathExpr.g:114:35: ( expression )*
                 while ( stream_expression.hasNext() ) {
                     adaptor.addChild(root_1, stream_expression.nextTree());
 
@@ -1632,7 +1632,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "argumentDeclaration"
-    // MathExpr.g:115:1: argumentDeclaration : type IDENTIFIER ;
+    // MathExpr.g:117:1: argumentDeclaration : type IDENTIFIER ;
     public final MathExprParser.argumentDeclaration_return argumentDeclaration() throws RecognitionException {
         MathExprParser.argumentDeclaration_return retval = new MathExprParser.argumentDeclaration_return();
         retval.start = input.LT(1);
@@ -1646,18 +1646,18 @@ public class MathExprParser extends Parser {
         Object IDENTIFIER62_tree=null;
 
         try {
-            // MathExpr.g:115:20: ( type IDENTIFIER )
-            // MathExpr.g:116:3: type IDENTIFIER
+            // MathExpr.g:117:20: ( type IDENTIFIER )
+            // MathExpr.g:118:3: type IDENTIFIER
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_type_in_argumentDeclaration792);
+            pushFollow(FOLLOW_type_in_argumentDeclaration806);
             type61=type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, type61.getTree());
-            IDENTIFIER62=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_argumentDeclaration794); if (state.failed) return retval;
+            IDENTIFIER62=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_argumentDeclaration808); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             IDENTIFIER62_tree = (Object)adaptor.create(IDENTIFIER62);
             root_0 = (Object)adaptor.becomeRoot(IDENTIFIER62_tree, root_0);
@@ -1691,7 +1691,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "argumentsDeclaration"
-    // MathExpr.g:118:1: argumentsDeclaration : ( argumentDeclaration ( ',' argumentDeclaration )* )? -> ^( SEMANTIC ( argumentDeclaration )* ) ;
+    // MathExpr.g:120:1: argumentsDeclaration : ( argumentDeclaration ( ',' argumentDeclaration )* )? -> ^( SEMANTIC ( argumentDeclaration )* ) ;
     public final MathExprParser.argumentsDeclaration_return argumentsDeclaration() throws RecognitionException {
         MathExprParser.argumentsDeclaration_return retval = new MathExprParser.argumentsDeclaration_return();
         retval.start = input.LT(1);
@@ -1705,13 +1705,13 @@ public class MathExprParser extends Parser {
 
 
         Object char_literal64_tree=null;
-        RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
+        RewriteRuleTokenStream stream_29=new RewriteRuleTokenStream(adaptor,"token 29");
         RewriteRuleSubtreeStream stream_argumentDeclaration=new RewriteRuleSubtreeStream(adaptor,"rule argumentDeclaration");
         try {
-            // MathExpr.g:118:21: ( ( argumentDeclaration ( ',' argumentDeclaration )* )? -> ^( SEMANTIC ( argumentDeclaration )* ) )
-            // MathExpr.g:119:3: ( argumentDeclaration ( ',' argumentDeclaration )* )?
+            // MathExpr.g:120:21: ( ( argumentDeclaration ( ',' argumentDeclaration )* )? -> ^( SEMANTIC ( argumentDeclaration )* ) )
+            // MathExpr.g:121:3: ( argumentDeclaration ( ',' argumentDeclaration )* )?
             {
-            // MathExpr.g:119:3: ( argumentDeclaration ( ',' argumentDeclaration )* )?
+            // MathExpr.g:121:3: ( argumentDeclaration ( ',' argumentDeclaration )* )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1720,33 +1720,33 @@ public class MathExprParser extends Parser {
             }
             switch (alt15) {
                 case 1 :
-                    // MathExpr.g:119:4: argumentDeclaration ( ',' argumentDeclaration )*
+                    // MathExpr.g:121:4: argumentDeclaration ( ',' argumentDeclaration )*
                     {
-                    pushFollow(FOLLOW_argumentDeclaration_in_argumentsDeclaration805);
+                    pushFollow(FOLLOW_argumentDeclaration_in_argumentsDeclaration819);
                     argumentDeclaration63=argumentDeclaration();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_argumentDeclaration.add(argumentDeclaration63.getTree());
-                    // MathExpr.g:119:24: ( ',' argumentDeclaration )*
+                    // MathExpr.g:121:24: ( ',' argumentDeclaration )*
                     loop14:
                     do {
                         int alt14=2;
                         int LA14_0 = input.LA(1);
 
-                        if ( (LA14_0==28) ) {
+                        if ( (LA14_0==29) ) {
                             alt14=1;
                         }
 
 
                         switch (alt14) {
                     	case 1 :
-                    	    // MathExpr.g:119:25: ',' argumentDeclaration
+                    	    // MathExpr.g:121:25: ',' argumentDeclaration
                     	    {
-                    	    char_literal64=(Token)match(input,28,FOLLOW_28_in_argumentsDeclaration808); if (state.failed) return retval; 
-                    	    if ( state.backtracking==0 ) stream_28.add(char_literal64);
+                    	    char_literal64=(Token)match(input,29,FOLLOW_29_in_argumentsDeclaration822); if (state.failed) return retval; 
+                    	    if ( state.backtracking==0 ) stream_29.add(char_literal64);
 
-                    	    pushFollow(FOLLOW_argumentDeclaration_in_argumentsDeclaration810);
+                    	    pushFollow(FOLLOW_argumentDeclaration_in_argumentsDeclaration824);
                     	    argumentDeclaration65=argumentDeclaration();
 
                     	    state._fsp--;
@@ -1781,14 +1781,14 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 119:54: -> ^( SEMANTIC ( argumentDeclaration )* )
+            // 121:54: -> ^( SEMANTIC ( argumentDeclaration )* )
             {
-                // MathExpr.g:119:58: ^( SEMANTIC ( argumentDeclaration )* )
+                // MathExpr.g:121:58: ^( SEMANTIC ( argumentDeclaration )* )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(SEMANTIC, "SEMANTIC"), root_1);
 
-                // MathExpr.g:119:69: ( argumentDeclaration )*
+                // MathExpr.g:121:69: ( argumentDeclaration )*
                 while ( stream_argumentDeclaration.hasNext() ) {
                     adaptor.addChild(root_1, stream_argumentDeclaration.nextTree());
 
@@ -1829,7 +1829,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "functionDeclaration"
-    // MathExpr.g:121:1: functionDeclaration : type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( ';' )* -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList ) ;
+    // MathExpr.g:123:1: functionDeclaration : type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( DELIMITER )* -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList ) ;
     public final MathExprParser.functionDeclaration_return functionDeclaration() throws RecognitionException {
         MathExprParser.functionDeclaration_return retval = new MathExprParser.functionDeclaration_return();
         retval.start = input.LT(1);
@@ -1841,7 +1841,7 @@ public class MathExprParser extends Parser {
         Token char_literal70=null;
         Token char_literal71=null;
         Token char_literal73=null;
-        Token char_literal74=null;
+        Token DELIMITER74=null;
         MathExprParser.type_return type66 = null;
 
         MathExprParser.argumentsDeclaration_return argumentsDeclaration69 = null;
@@ -1854,70 +1854,70 @@ public class MathExprParser extends Parser {
         Object char_literal70_tree=null;
         Object char_literal71_tree=null;
         Object char_literal73_tree=null;
-        Object char_literal74_tree=null;
+        Object DELIMITER74_tree=null;
         RewriteRuleTokenStream stream_42=new RewriteRuleTokenStream(adaptor,"token 42");
         RewriteRuleTokenStream stream_41=new RewriteRuleTokenStream(adaptor,"token 41");
-        RewriteRuleTokenStream stream_40=new RewriteRuleTokenStream(adaptor,"token 40");
         RewriteRuleTokenStream stream_IDENTIFIER=new RewriteRuleTokenStream(adaptor,"token IDENTIFIER");
-        RewriteRuleTokenStream stream_26=new RewriteRuleTokenStream(adaptor,"token 26");
         RewriteRuleTokenStream stream_27=new RewriteRuleTokenStream(adaptor,"token 27");
+        RewriteRuleTokenStream stream_DELIMITER=new RewriteRuleTokenStream(adaptor,"token DELIMITER");
+        RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
         RewriteRuleSubtreeStream stream_argumentsDeclaration=new RewriteRuleSubtreeStream(adaptor,"rule argumentsDeclaration");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         RewriteRuleSubtreeStream stream_expressionsList=new RewriteRuleSubtreeStream(adaptor,"rule expressionsList");
         try {
-            // MathExpr.g:121:20: ( type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( ';' )* -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList ) )
-            // MathExpr.g:122:3: type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( ';' )*
+            // MathExpr.g:123:20: ( type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( DELIMITER )* -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList ) )
+            // MathExpr.g:124:3: type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ( DELIMITER )*
             {
-            pushFollow(FOLLOW_type_in_functionDeclaration834);
+            pushFollow(FOLLOW_type_in_functionDeclaration848);
             type66=type();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_type.add(type66.getTree());
-            IDENTIFIER67=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_functionDeclaration836); if (state.failed) return retval; 
+            IDENTIFIER67=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_functionDeclaration850); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IDENTIFIER.add(IDENTIFIER67);
 
-            char_literal68=(Token)match(input,26,FOLLOW_26_in_functionDeclaration838); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_26.add(char_literal68);
+            char_literal68=(Token)match(input,27,FOLLOW_27_in_functionDeclaration852); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_27.add(char_literal68);
 
-            pushFollow(FOLLOW_argumentsDeclaration_in_functionDeclaration840);
+            pushFollow(FOLLOW_argumentsDeclaration_in_functionDeclaration854);
             argumentsDeclaration69=argumentsDeclaration();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_argumentsDeclaration.add(argumentsDeclaration69.getTree());
-            char_literal70=(Token)match(input,27,FOLLOW_27_in_functionDeclaration842); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_27.add(char_literal70);
+            char_literal70=(Token)match(input,28,FOLLOW_28_in_functionDeclaration856); if (state.failed) return retval; 
+            if ( state.backtracking==0 ) stream_28.add(char_literal70);
 
-            char_literal71=(Token)match(input,41,FOLLOW_41_in_functionDeclaration844); if (state.failed) return retval; 
+            char_literal71=(Token)match(input,41,FOLLOW_41_in_functionDeclaration858); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_41.add(char_literal71);
 
-            pushFollow(FOLLOW_expressionsList_in_functionDeclaration846);
+            pushFollow(FOLLOW_expressionsList_in_functionDeclaration860);
             expressionsList72=expressionsList();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expressionsList.add(expressionsList72.getTree());
-            char_literal73=(Token)match(input,42,FOLLOW_42_in_functionDeclaration848); if (state.failed) return retval; 
+            char_literal73=(Token)match(input,42,FOLLOW_42_in_functionDeclaration862); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal73);
 
-            // MathExpr.g:122:72: ( ';' )*
+            // MathExpr.g:124:72: ( DELIMITER )*
             loop16:
             do {
                 int alt16=2;
                 int LA16_0 = input.LA(1);
 
-                if ( (LA16_0==40) ) {
+                if ( (LA16_0==DELIMITER) ) {
                     alt16=1;
                 }
 
 
                 switch (alt16) {
             	case 1 :
-            	    // MathExpr.g:0:0: ';'
+            	    // MathExpr.g:0:0: DELIMITER
             	    {
-            	    char_literal74=(Token)match(input,40,FOLLOW_40_in_functionDeclaration850); if (state.failed) return retval; 
-            	    if ( state.backtracking==0 ) stream_40.add(char_literal74);
+            	    DELIMITER74=(Token)match(input,DELIMITER,FOLLOW_DELIMITER_in_functionDeclaration864); if (state.failed) return retval; 
+            	    if ( state.backtracking==0 ) stream_DELIMITER.add(DELIMITER74);
 
 
             	    }
@@ -1931,7 +1931,7 @@ public class MathExprParser extends Parser {
 
 
             // AST REWRITE
-            // elements: type, argumentsDeclaration, expressionsList, IDENTIFIER
+            // elements: expressionsList, IDENTIFIER, argumentsDeclaration, type
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1942,9 +1942,9 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 123:5: -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList )
+            // 125:5: -> ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList )
             {
-                // MathExpr.g:123:9: ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList )
+                // MathExpr.g:125:9: ^( FUNCTION IDENTIFIER type argumentsDeclaration expressionsList )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(FUNCTION, "FUNCTION"), root_1);
@@ -1988,7 +1988,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "importDeclaration"
-    // MathExpr.g:126:1: importDeclaration : '#include' (s1= STRING | s2= INCLUDE_STRING ) -> ^( INCLUDE ( $s1)? ( $s2)? ) ;
+    // MathExpr.g:128:1: importDeclaration : '#include' (s1= STRING | s2= INCLUDE_STRING ) -> ^( INCLUDE ( $s1)? ( $s2)? ) ;
     public final MathExprParser.importDeclaration_return importDeclaration() throws RecognitionException {
         MathExprParser.importDeclaration_return retval = new MathExprParser.importDeclaration_return();
         retval.start = input.LT(1);
@@ -2007,13 +2007,13 @@ public class MathExprParser extends Parser {
         RewriteRuleTokenStream stream_STRING=new RewriteRuleTokenStream(adaptor,"token STRING");
 
         try {
-            // MathExpr.g:126:18: ( '#include' (s1= STRING | s2= INCLUDE_STRING ) -> ^( INCLUDE ( $s1)? ( $s2)? ) )
-            // MathExpr.g:127:3: '#include' (s1= STRING | s2= INCLUDE_STRING )
+            // MathExpr.g:128:18: ( '#include' (s1= STRING | s2= INCLUDE_STRING ) -> ^( INCLUDE ( $s1)? ( $s2)? ) )
+            // MathExpr.g:129:3: '#include' (s1= STRING | s2= INCLUDE_STRING )
             {
-            string_literal75=(Token)match(input,43,FOLLOW_43_in_importDeclaration881); if (state.failed) return retval; 
+            string_literal75=(Token)match(input,43,FOLLOW_43_in_importDeclaration895); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(string_literal75);
 
-            // MathExpr.g:127:14: (s1= STRING | s2= INCLUDE_STRING )
+            // MathExpr.g:129:14: (s1= STRING | s2= INCLUDE_STRING )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2032,18 +2032,18 @@ public class MathExprParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // MathExpr.g:127:15: s1= STRING
+                    // MathExpr.g:129:15: s1= STRING
                     {
-                    s1=(Token)match(input,STRING,FOLLOW_STRING_in_importDeclaration886); if (state.failed) return retval; 
+                    s1=(Token)match(input,STRING,FOLLOW_STRING_in_importDeclaration900); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_STRING.add(s1);
 
 
                     }
                     break;
                 case 2 :
-                    // MathExpr.g:127:27: s2= INCLUDE_STRING
+                    // MathExpr.g:129:27: s2= INCLUDE_STRING
                     {
-                    s2=(Token)match(input,INCLUDE_STRING,FOLLOW_INCLUDE_STRING_in_importDeclaration892); if (state.failed) return retval; 
+                    s2=(Token)match(input,INCLUDE_STRING,FOLLOW_INCLUDE_STRING_in_importDeclaration906); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_INCLUDE_STRING.add(s2);
 
 
@@ -2055,7 +2055,7 @@ public class MathExprParser extends Parser {
 
 
             // AST REWRITE
-            // elements: s1, s2
+            // elements: s2, s1
             // token labels: s2, s1
             // rule labels: retval
             // token list labels: 
@@ -2068,20 +2068,20 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 127:47: -> ^( INCLUDE ( $s1)? ( $s2)? )
+            // 129:47: -> ^( INCLUDE ( $s1)? ( $s2)? )
             {
-                // MathExpr.g:127:51: ^( INCLUDE ( $s1)? ( $s2)? )
+                // MathExpr.g:129:51: ^( INCLUDE ( $s1)? ( $s2)? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(INCLUDE, "INCLUDE"), root_1);
 
-                // MathExpr.g:127:61: ( $s1)?
+                // MathExpr.g:129:61: ( $s1)?
                 if ( stream_s1.hasNext() ) {
                     adaptor.addChild(root_1, stream_s1.nextNode());
 
                 }
                 stream_s1.reset();
-                // MathExpr.g:127:66: ( $s2)?
+                // MathExpr.g:129:66: ( $s2)?
                 if ( stream_s2.hasNext() ) {
                     adaptor.addChild(root_1, stream_s2.nextNode());
 
@@ -2122,7 +2122,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "declaration"
-    // MathExpr.g:130:1: declaration : ( functionDeclaration | importDeclaration ) ;
+    // MathExpr.g:132:1: declaration : ( functionDeclaration | importDeclaration ) ;
     public final MathExprParser.declaration_return declaration() throws RecognitionException {
         MathExprParser.declaration_return retval = new MathExprParser.declaration_return();
         retval.start = input.LT(1);
@@ -2136,12 +2136,12 @@ public class MathExprParser extends Parser {
 
 
         try {
-            // MathExpr.g:130:12: ( ( functionDeclaration | importDeclaration ) )
-            // MathExpr.g:131:3: ( functionDeclaration | importDeclaration )
+            // MathExpr.g:132:12: ( ( functionDeclaration | importDeclaration ) )
+            // MathExpr.g:133:3: ( functionDeclaration | importDeclaration )
             {
             root_0 = (Object)adaptor.nil();
 
-            // MathExpr.g:131:3: ( functionDeclaration | importDeclaration )
+            // MathExpr.g:133:3: ( functionDeclaration | importDeclaration )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2160,9 +2160,9 @@ public class MathExprParser extends Parser {
             }
             switch (alt18) {
                 case 1 :
-                    // MathExpr.g:131:5: functionDeclaration
+                    // MathExpr.g:133:5: functionDeclaration
                     {
-                    pushFollow(FOLLOW_functionDeclaration_in_declaration922);
+                    pushFollow(FOLLOW_functionDeclaration_in_declaration936);
                     functionDeclaration76=functionDeclaration();
 
                     state._fsp--;
@@ -2172,9 +2172,9 @@ public class MathExprParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // MathExpr.g:131:27: importDeclaration
+                    // MathExpr.g:133:27: importDeclaration
                     {
-                    pushFollow(FOLLOW_importDeclaration_in_declaration926);
+                    pushFollow(FOLLOW_importDeclaration_in_declaration940);
                     importDeclaration77=importDeclaration();
 
                     state._fsp--;
@@ -2215,7 +2215,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "declarations"
-    // MathExpr.g:134:1: declarations : ( declaration )* ;
+    // MathExpr.g:136:1: declarations : ( declaration )* ;
     public final MathExprParser.declarations_return declarations() throws RecognitionException {
         MathExprParser.declarations_return retval = new MathExprParser.declarations_return();
         retval.start = input.LT(1);
@@ -2227,12 +2227,12 @@ public class MathExprParser extends Parser {
 
 
         try {
-            // MathExpr.g:134:13: ( ( declaration )* )
-            // MathExpr.g:135:3: ( declaration )*
+            // MathExpr.g:136:13: ( ( declaration )* )
+            // MathExpr.g:137:3: ( declaration )*
             {
             root_0 = (Object)adaptor.nil();
 
-            // MathExpr.g:135:3: ( declaration )*
+            // MathExpr.g:137:3: ( declaration )*
             loop19:
             do {
                 int alt19=2;
@@ -2247,7 +2247,7 @@ public class MathExprParser extends Parser {
             	case 1 :
             	    // MathExpr.g:0:0: declaration
             	    {
-            	    pushFollow(FOLLOW_declaration_in_declarations939);
+            	    pushFollow(FOLLOW_declaration_in_declarations953);
             	    declaration78=declaration();
 
             	    state._fsp--;
@@ -2291,7 +2291,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "code"
-    // MathExpr.g:138:1: code : declarations ;
+    // MathExpr.g:140:1: code : declarations ;
     public final MathExprParser.code_return code() throws RecognitionException {
         MathExprParser.code_return retval = new MathExprParser.code_return();
         retval.start = input.LT(1);
@@ -2303,12 +2303,12 @@ public class MathExprParser extends Parser {
 
 
         try {
-            // MathExpr.g:138:5: ( declarations )
-            // MathExpr.g:139:3: declarations
+            // MathExpr.g:140:5: ( declarations )
+            // MathExpr.g:141:3: declarations
             {
             root_0 = (Object)adaptor.nil();
 
-            pushFollow(FOLLOW_declarations_in_code951);
+            pushFollow(FOLLOW_declarations_in_code965);
             declarations79=declarations();
 
             state._fsp--;
@@ -2343,7 +2343,7 @@ public class MathExprParser extends Parser {
     };
 
     // $ANTLR start "start"
-    // MathExpr.g:142:1: start : code EOF -> ^( PROGRAM code ) ;
+    // MathExpr.g:144:1: start : code EOF -> ^( PROGRAM code ) ;
     public final MathExprParser.start_return start() throws RecognitionException {
         MathExprParser.start_return retval = new MathExprParser.start_return();
         retval.start = input.LT(1);
@@ -2358,16 +2358,16 @@ public class MathExprParser extends Parser {
         RewriteRuleTokenStream stream_EOF=new RewriteRuleTokenStream(adaptor,"token EOF");
         RewriteRuleSubtreeStream stream_code=new RewriteRuleSubtreeStream(adaptor,"rule code");
         try {
-            // MathExpr.g:142:6: ( code EOF -> ^( PROGRAM code ) )
-            // MathExpr.g:143:3: code EOF
+            // MathExpr.g:144:6: ( code EOF -> ^( PROGRAM code ) )
+            // MathExpr.g:145:3: code EOF
             {
-            pushFollow(FOLLOW_code_in_start962);
+            pushFollow(FOLLOW_code_in_start976);
             code80=code();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_code.add(code80.getTree());
-            EOF81=(Token)match(input,EOF,FOLLOW_EOF_in_start966); if (state.failed) return retval; 
+            EOF81=(Token)match(input,EOF,FOLLOW_EOF_in_start980); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_EOF.add(EOF81);
 
 
@@ -2384,9 +2384,9 @@ public class MathExprParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 145:5: -> ^( PROGRAM code )
+            // 147:5: -> ^( PROGRAM code )
             {
-                // MathExpr.g:145:9: ^( PROGRAM code )
+                // MathExpr.g:147:9: ^( PROGRAM code )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot((Object)adaptor.create(PROGRAM, "PROGRAM"), root_1);
@@ -2423,36 +2423,36 @@ public class MathExprParser extends Parser {
 
     // $ANTLR start synpred9_MathExpr
     public final void synpred9_MathExpr_fragment() throws RecognitionException {   
-        // MathExpr.g:82:3: ( IDENTIFIER ( arrayIndex0 rvalue ']' )* )
-        // MathExpr.g:82:3: IDENTIFIER ( arrayIndex0 rvalue ']' )*
+        // MathExpr.g:84:3: ( IDENTIFIER ( arrayIndex0 rvalue ']' )* )
+        // MathExpr.g:84:3: IDENTIFIER ( arrayIndex0 rvalue ']' )*
         {
-        match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_synpred9_MathExpr550); if (state.failed) return ;
-        // MathExpr.g:82:14: ( arrayIndex0 rvalue ']' )*
+        match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_synpred9_MathExpr561); if (state.failed) return ;
+        // MathExpr.g:84:14: ( arrayIndex0 rvalue ']' )*
         loop21:
         do {
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==24) ) {
+            if ( (LA21_0==25) ) {
                 alt21=1;
             }
 
 
             switch (alt21) {
         	case 1 :
-        	    // MathExpr.g:82:15: arrayIndex0 rvalue ']'
+        	    // MathExpr.g:84:15: arrayIndex0 rvalue ']'
         	    {
-        	    pushFollow(FOLLOW_arrayIndex0_in_synpred9_MathExpr553);
+        	    pushFollow(FOLLOW_arrayIndex0_in_synpred9_MathExpr564);
         	    arrayIndex0();
 
         	    state._fsp--;
         	    if (state.failed) return ;
-        	    pushFollow(FOLLOW_rvalue_in_synpred9_MathExpr556);
+        	    pushFollow(FOLLOW_rvalue_in_synpred9_MathExpr567);
         	    rvalue();
 
         	    state._fsp--;
         	    if (state.failed) return ;
-        	    match(input,25,FOLLOW_25_in_synpred9_MathExpr558); if (state.failed) return ;
+        	    match(input,26,FOLLOW_26_in_synpred9_MathExpr569); if (state.failed) return ;
 
         	    }
         	    break;
@@ -2469,11 +2469,11 @@ public class MathExprParser extends Parser {
 
     // $ANTLR start synpred23_MathExpr
     public final void synpred23_MathExpr_fragment() throws RecognitionException {   
-        // MathExpr.g:106:36: ( ELSE expression )
-        // MathExpr.g:106:36: ELSE expression
+        // MathExpr.g:108:36: ( ELSE expression )
+        // MathExpr.g:108:36: ELSE expression
         {
-        match(input,ELSE,FOLLOW_ELSE_in_synpred23_MathExpr724); if (state.failed) return ;
-        pushFollow(FOLLOW_expression_in_synpred23_MathExpr727);
+        match(input,ELSE,FOLLOW_ELSE_in_synpred23_MathExpr738); if (state.failed) return ;
+        pushFollow(FOLLOW_expression_in_synpred23_MathExpr741);
         expression();
 
         state._fsp--;
@@ -2517,94 +2517,94 @@ public class MathExprParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_IDENTIFIER_in_type0406 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_24_in_type0409 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_type0411 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_type0_in_type422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_term441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_term445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lvalue_in_term449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_functionCall_in_term453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_term457 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_logic_in_term460 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_term462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rvalue_in_arguments475 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_28_in_arguments478 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_arguments480 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_functionCall504 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_functionCall506 = new BitSet(new long[]{0x000000000CB00000L});
-    public static final BitSet FOLLOW_arguments_in_functionCall508 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_functionCall510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_arrayIndex0532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_lvalue550 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_arrayIndex0_in_lvalue553 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_lvalue556 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_lvalue558 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_lvalue565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logic_in_rvalue576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_term_in_multiplex587 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_set_in_multiplex590 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_term_in_multiplex601 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_multiplex_in_add614 = new BitSet(new long[]{0x0000000180000002L});
-    public static final BitSet FOLLOW_set_in_add617 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_multiplex_in_add626 = new BitSet(new long[]{0x0000000180000002L});
-    public static final BitSet FOLLOW_add_in_logic639 = new BitSet(new long[]{0x0000007E00000002L});
-    public static final BitSet FOLLOW_set_in_logic642 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_add_in_logic667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lvalue_in_expression681 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_expression683 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_expression686 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_expression688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_functionCall_in_expression693 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_expression695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_expression700 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_expression703 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_expression705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_expression710 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_expression713 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_expression716 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_expression718 = new BitSet(new long[]{0x00000200008000B0L});
-    public static final BitSet FOLLOW_expression_in_expression721 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_ELSE_in_expression724 = new BitSet(new long[]{0x00000200008000B0L});
-    public static final BitSet FOLLOW_expression_in_expression727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WHILE_in_expression733 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_expression736 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_expression739 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_expression741 = new BitSet(new long[]{0x00000200008000B0L});
-    public static final BitSet FOLLOW_expression_in_expression744 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_expression748 = new BitSet(new long[]{0x00000600008000B0L});
-    public static final BitSet FOLLOW_expressionsList_in_expression751 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_expression753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expressionsList766 = new BitSet(new long[]{0x00000300008000B2L});
-    public static final BitSet FOLLOW_40_in_expressionsList768 = new BitSet(new long[]{0x00000300008000B2L});
-    public static final BitSet FOLLOW_type_in_argumentDeclaration792 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_argumentDeclaration794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_argumentDeclaration_in_argumentsDeclaration805 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_28_in_argumentsDeclaration808 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_argumentDeclaration_in_argumentsDeclaration810 = new BitSet(new long[]{0x0000000010000002L});
-    public static final BitSet FOLLOW_type_in_functionDeclaration834 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_functionDeclaration836 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_functionDeclaration838 = new BitSet(new long[]{0x0000000008800000L});
-    public static final BitSet FOLLOW_argumentsDeclaration_in_functionDeclaration840 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_functionDeclaration842 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_functionDeclaration844 = new BitSet(new long[]{0x00000600008000B0L});
-    public static final BitSet FOLLOW_expressionsList_in_functionDeclaration846 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_functionDeclaration848 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_40_in_functionDeclaration850 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_43_in_importDeclaration881 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_STRING_in_importDeclaration886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INCLUDE_STRING_in_importDeclaration892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_functionDeclaration_in_declaration922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_importDeclaration_in_declaration926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaration_in_declarations939 = new BitSet(new long[]{0x0000080000800002L});
-    public static final BitSet FOLLOW_declarations_in_code951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_code_in_start962 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_start966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDENTIFIER_in_synpred9_MathExpr550 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_arrayIndex0_in_synpred9_MathExpr553 = new BitSet(new long[]{0x0000000004B00000L});
-    public static final BitSet FOLLOW_rvalue_in_synpred9_MathExpr556 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_synpred9_MathExpr558 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_ELSE_in_synpred23_MathExpr724 = new BitSet(new long[]{0x00000200008000B0L});
-    public static final BitSet FOLLOW_expression_in_synpred23_MathExpr727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_type0419 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_25_in_type0422 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_type0424 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_type0_in_type435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_term452 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_term456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lvalue_in_term460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_functionCall_in_term464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_term468 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_logic_in_term471 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_term473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rvalue_in_arguments486 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_arguments489 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_arguments491 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_functionCall515 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_functionCall517 = new BitSet(new long[]{0x0000000018B00000L});
+    public static final BitSet FOLLOW_arguments_in_functionCall519 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_functionCall521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_arrayIndex0543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_lvalue561 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_arrayIndex0_in_lvalue564 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_lvalue567 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_lvalue569 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_lvalue576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_logic_in_rvalue587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_term_in_multiplex598 = new BitSet(new long[]{0x00000000C0000002L});
+    public static final BitSet FOLLOW_set_in_multiplex601 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_term_in_multiplex612 = new BitSet(new long[]{0x00000000C0000002L});
+    public static final BitSet FOLLOW_multiplex_in_add625 = new BitSet(new long[]{0x0000000300000002L});
+    public static final BitSet FOLLOW_set_in_add628 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_multiplex_in_add637 = new BitSet(new long[]{0x0000000300000002L});
+    public static final BitSet FOLLOW_add_in_logic650 = new BitSet(new long[]{0x000000FC00000002L});
+    public static final BitSet FOLLOW_set_in_logic653 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_add_in_logic678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lvalue_in_expression692 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_expression694 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_expression697 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_DELIMITER_in_expression699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_functionCall_in_expression705 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_DELIMITER_in_expression707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RETURN_in_expression713 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_expression716 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_DELIMITER_in_expression718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_expression724 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_expression727 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_expression730 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_expression732 = new BitSet(new long[]{0x00000200008000B0L});
+    public static final BitSet FOLLOW_expression_in_expression735 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_ELSE_in_expression738 = new BitSet(new long[]{0x00000200008000B0L});
+    public static final BitSet FOLLOW_expression_in_expression741 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WHILE_in_expression747 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_expression750 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_expression753 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_expression755 = new BitSet(new long[]{0x00000200008000B0L});
+    public static final BitSet FOLLOW_expression_in_expression758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_expression762 = new BitSet(new long[]{0x00000600008000B0L});
+    public static final BitSet FOLLOW_expressionsList_in_expression765 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_expression767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expressionsList780 = new BitSet(new long[]{0x00000200018000B2L});
+    public static final BitSet FOLLOW_DELIMITER_in_expressionsList782 = new BitSet(new long[]{0x00000200018000B2L});
+    public static final BitSet FOLLOW_type_in_argumentDeclaration806 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_argumentDeclaration808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_argumentDeclaration_in_argumentsDeclaration819 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_29_in_argumentsDeclaration822 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_argumentDeclaration_in_argumentsDeclaration824 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_type_in_functionDeclaration848 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_functionDeclaration850 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_functionDeclaration852 = new BitSet(new long[]{0x0000000010800000L});
+    public static final BitSet FOLLOW_argumentsDeclaration_in_functionDeclaration854 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_functionDeclaration856 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_functionDeclaration858 = new BitSet(new long[]{0x00000600008000B0L});
+    public static final BitSet FOLLOW_expressionsList_in_functionDeclaration860 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_functionDeclaration862 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_DELIMITER_in_functionDeclaration864 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_43_in_importDeclaration895 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_STRING_in_importDeclaration900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INCLUDE_STRING_in_importDeclaration906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_functionDeclaration_in_declaration936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_importDeclaration_in_declaration940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaration_in_declarations953 = new BitSet(new long[]{0x0000080000800002L});
+    public static final BitSet FOLLOW_declarations_in_code965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_code_in_start976 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_start980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDENTIFIER_in_synpred9_MathExpr561 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_arrayIndex0_in_synpred9_MathExpr564 = new BitSet(new long[]{0x0000000008B00000L});
+    public static final BitSet FOLLOW_rvalue_in_synpred9_MathExpr567 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_synpred9_MathExpr569 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_ELSE_in_synpred23_MathExpr738 = new BitSet(new long[]{0x00000200008000B0L});
+    public static final BitSet FOLLOW_expression_in_synpred23_MathExpr741 = new BitSet(new long[]{0x0000000000000002L});
 
 }

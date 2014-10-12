@@ -51,14 +51,16 @@ INCLUDE_STRING:
 IDENTIFIER:
   LETTER (LETTER | DIGIT)*
 ;
- 
+
+DELIMITER
+    :   ';';
+
 type0:
   IDENTIFIER ('[' ']')*
 ;
 type:
   type0  ->  TYPE[$type0.text]
 ;
- 
 
 term:
   NUMBER
@@ -72,7 +74,7 @@ arguments:
   (rvalue (',' rvalue)*)?  ->  ^(ARGUMENTS rvalue*)
 ;
 functionCall:
-  IDENTIFIER '(' arguments ')'  ->  ^(CALL IDENTIFIER ARGUMENTS)
+  IDENTIFIER '(' arguments ')'  ->  ^(CALL IDENTIFIER arguments)
 ;
 
 arrayIndex0:
@@ -100,9 +102,9 @@ logic:
 ; 
  
 expression:
-  lvalue '='^ rvalue ';'!
-| functionCall ';'!
-| RETURN^ rvalue ';'!
+  lvalue '='^ rvalue DELIMITER !
+| functionCall DELIMITER !
+| RETURN^ rvalue DELIMITER !
 | IF^ '('! rvalue ')'! expression (ELSE! expression)?
 | WHILE^ '('! rvalue ')'! expression
 | '{'! expressionsList '}'!
@@ -119,7 +121,7 @@ argumentsDeclaration:
   (argumentDeclaration (',' argumentDeclaration)*)?  ->  ^(SEMANTIC argumentDeclaration*)
 ;
 functionDeclaration:
-  type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' ';'*
+  type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' DELIMITER*
     ->  ^(FUNCTION IDENTIFIER type argumentsDeclaration expressionsList)
 ;
  
