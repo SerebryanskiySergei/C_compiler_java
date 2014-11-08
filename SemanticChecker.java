@@ -1,15 +1,15 @@
 import generated.MathExprLexer;
 import org.antlr.runtime.CommonToken;
-import org.omg.CORBA.portable.ApplicationException;
 
 import java.util.HashMap;
-
+import java.util.Hashtable;
+import java.lang.Exception;
 /**
  * Created by V on 19.10.2014.
  */
 public class SemanticChecker {
 
-    private static DataType stringToDataType(String type) {
+    private static DataType stringToDataType(String type) throws Exception {
         if (type.equals("int")) {
             return DataType.INT;
         } else if (type.equals("double")) {
@@ -19,7 +19,7 @@ public class SemanticChecker {
         } else if (type.equals("void") || type.equals("")) {
             return DataType.VOID;
         } else {
-            throw new ApplicationException("Invalid data type"); //TODO
+            throw new Exception("Invalid data type"); //TODO
         }
     }
 
@@ -46,7 +46,7 @@ public class SemanticChecker {
         convert.addChild(new AstNode(new CommonToken(MathExprLexer.IDENTIFIER, dataTypeToString(dataType))));
     }
 
-    public DataType check(AstNode node, Context context) {
+    public DataType check(AstNode node, Context context) throws Exception {
         switch (node.getType()) {
             case MathExprLexer.PROGRAM: {
 
@@ -66,37 +66,38 @@ public class SemanticChecker {
                 String name = node.getChild(1).getText();
                 Identifier identifier = context.InThisContext(name);//TODO context[name]
                 if (identifier != null) {
-                    throw new ApplicationException(String.format("Identifier " + name + " already exists."));
-                    Identifier func = new Identifier(name, IdentifierType.FUNCTION, dataType, node);
-                    context.InThisContext(name) = func;
-                    context = new Context(context);
-                    AstNode params = (AstNode) node.getChild(2);
-                    for (int i = 0; i < params.getChildCount(); i++) {
-                        DataType paramDataType = stringToDataType(params.getChild(i).getText());
-                        String paramName = params.getChild(i).getChild(0).getText();
-                        if (paramDataType == DataType.VOID) {
-                            throw new ApplicationException(String.format("In function " + name + " void param " + paramName));
-                        }
-                        context.InThisContext(paramName) = new Identifier(paramName, IdentifierType.PARAM, paramDataType, (AstNode) params.getChild(i));
-                    }
-                    context.function = func;
-                    check((AstNode) node.getChild(3), context);
-                    return DataType.VOID;
+                    throw new Exception(String.format("Identifier " + name + " already exists."));
                 }
+                Identifier func = new Identifier(name, IdentifierType.FUNCTION, dataType, node);
+                context.setIdentifier(name,func);
+                context = new Context(context);
+                AstNode params = (AstNode) node.getChild(2);
+                for (int i = 0; i < params.getChildCount(); i++) {
+                    DataType paramDataType = stringToDataType(params.getChild(i).getText());
+                    String paramName = params.getChild(i).getChild(0).getText();
+                    if (paramDataType == DataType.VOID) {
+                        throw new Exception(String.format("In function " + name + " void param " + paramName));
+                    }
+                    context.setIdentifier(paramName,new Identifier(paramName, IdentifierType.PARAM, paramDataType, (AstNode) params.getChild(i)));
+                }
+                context.function = func;
+                check((AstNode) node.getChild(3), context);
+                return DataType.VOID;
+
             }
 
             case MathExprLexer.IDENTIFIER: {
                 Identifier identifier = context.InThisContext(node.getText());
                 if (identifier == null)
-                    throw new ApplicationException(String.format("Unknown identifier " + node.getText()));
+                    throw new Exception(String.format("Unknown identifier " + node.getText()));
                 if (identifier.identifierType == IdentifierType.FUNCTION) {
                     if (identifier.dataType == DataType.VOID)
-                        throw new ApplicationException(String.format("Function " + identifier.name + " returns void"));
+                        throw new Exception(String.format("Function " + identifier.name + " returns void"));
                     if (identifier.node.getChild(1).getChildCount() > 0)
-                        throw new ApplicationException(String.format("No params for function" + identifier.name + " call"));
+                        throw new Exception(String.format("No params for function" + identifier.name + " call"));
                     AstNode call = new AstNode(new CommonToken(MathExprLexer.CALL));
                     call.addChild(node);
-                    call.addChild(new AstNode(new CommonToken(MathExprLexer.PARAMS)));
+                    call.addChild(new AstNode(new CommonToken(MathExprLexer.ARGUMENTS)));
                     node.parent.setChild(node.childIndex, call);
 
                     node.dataType = identifier.dataType;
@@ -114,14 +115,14 @@ public class SemanticChecker {
 
             case MathExprLexer.RETURN: {
                 if (context.function == null)
-                    throw new ApplicationException(String.format("Return not in function in line " + node.getLine()));
+                    throw new Exception(String.format("Return not in function in line " + node.getLine()));
 
                 DataType returnDataType = check((AstNode) node.getChild(0), context);
                 if (context.function.dataType != returnDataType) {
                     if (context.function.dataType == DataType.DOUBLE && returnDataType == DataType.INT)
                         convert((AstNode) node.getChild(0), DataType.DOUBLE);
                     else
-                        throw new ApplicationException(String.format("Return incopotible types " + dataTypeToString(context.function.dataType)
+                        throw new Exception(String.format("Return incopotible types " + dataTypeToString(context.function.dataType)
                                 + " " + dataTypeToString(returnDataType)));
                 }
                 return DataType.VOID;
@@ -171,10 +172,10 @@ public class SemanticChecker {
                 DataType leftDataType = check((AstNode) node.getChild(0), context);
                 DataType rightDataType = check((AstNode) node.getChild(1), context);
                 if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT)
-                    throw new ApplicationException(String.format("Left operand invalid type for operation " + node.getText() +
+                    throw new Exception(String.format("Left operand invalid type for operation " + node.getText() +
                             ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex()));
                 if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT)
-                    throw new ApplicationException(String.format("Right operand invalid type for operation " + node.getText() +
+                    throw new Exception(String.format("Right operand invalid type for operation " + node.getText() +
                             ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex()));
                 if (leftDataType == DataType.DOUBLE) {
                     if (rightDataType == DataType.INT)
@@ -195,7 +196,7 @@ public class SemanticChecker {
             case MathExprLexer.WHILE: {
                 DataType conditionDataType = check((AstNode) node.getChild(0), context);
                 if (conditionDataType != DataType.BOOL)
-                    throw new ApplicationException(String.format("In while condition type is " + dataTypeToString(conditionDataType)));
+                    throw new Exception(String.format("In while condition type is " + dataTypeToString(conditionDataType)));
                 //context = new Context(context);
                 check((AstNode) node.getChild(1), context);
                 return DataType.VOID;
@@ -204,7 +205,7 @@ public class SemanticChecker {
             case MathExprLexer.IF: {
                 DataType conditionDataType = check((AstNode) node.getChild(0), context);
                 if (conditionDataType != DataType.BOOL)
-                    throw new ApplicationException(String.format("In if condition type is " + dataTypeToString(conditionDataType)));
+                    throw new Exception(String.format("In if condition type is " + dataTypeToString(conditionDataType)));
                 //context = new Context(context);
                 check((AstNode) node.getChild(1), context);
                 if (node.getChildCount() == 3)
@@ -218,7 +219,7 @@ public class SemanticChecker {
             }
 
             default: {
-                throw new ApplicationException("Unknown token type");
+                throw new Exception("Unknown token type");
             }
             break;
         }
@@ -255,20 +256,25 @@ public class SemanticChecker {
         public Context(Context parentContext) {
             this.parentContext = parentContext;
         }
-
-
+        public Identifier getIdentifier(String name){
+            if(identifiers.containsKey(name))
+                return identifiers.get(name);
+            else {
+                if (parentContext != null)
+                    return parentContext.getIdentifier(name);
+                else
+                    return null;
+            }
+        }
+        public void setIdentifier(String name, Identifier value){
+            identifiers.put(name,value);
+        }
         public Identifier InThisContext(String name) {
             if (identifiers.containsKey(name)) {
                 return identifiers.get(name);
             } else {
-                if (parentContext != null) {
-                    return parentContext.InThisContext(name);
-                } else {
-                    return null;
-                }
+                return null;
             }
-
-
         }
 
         public Identifier getFunction() {
@@ -291,6 +297,7 @@ public class SemanticChecker {
             return parentContext;
         }
     }
+
 
 
 }
