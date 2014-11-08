@@ -52,23 +52,14 @@ IDENTIFIER:
   LETTER (LETTER | DIGIT)*
 ;
 
-DELIMITER:  ';'     ;
+DELIMITER
+    :   ';';
 
-typeBasic:
-'int' ('[' ']')*
-|'char' ('[' ']')*
-|'void'
-|'string' ('[' ']')*
-|'short' ('[' ']')*
-|'long' ('[' ']')*
-|'float' ('[' ']')*
-|'double' ('[' ']')*
-|'signed' ('[' ']')*
-|'unsigned' ('[' ']')*
+type0:
+  IDENTIFIER ('[' ']')*
 ;
-
 type:
-  typeBasic  ->  TYPE[$type0.text]
+  type0  ->  TYPE[$type0.text]
 ;
 
 term:
@@ -91,72 +82,51 @@ arrayIndex0:
 ;
 lvalue:  
   IDENTIFIER (arrayIndex0^ rvalue ']'!)*
+| IDENTIFIER
 ;
  
 rvalue:
   logic
 ;
-
-increment:
-IDENTIFIER ('++'|'--')
-;
-
-ADD:            '+'     ;
-SUB:            '-'     ;
-MUL:            '*'     ;
-DIV:            '/'     ;
-BIT_AND:        '&'     ;
-BIT_OR:         '|'     ;
-ASSIGN:	        '='     ;
-GE_OP:          '>='    ;
-LE_OP:          '<='    ;
-NEQUALS:        '!='    ;
-EQUALS:         '=='    ;
-GT:             '>'     ;
-LT:             '<'     ;
-
+ 
 multiplex:
-  term (( MUL | DIV )^ term)*
+  term (( '*' | '/' )^ term)*
 ;
  
 add:
-  multiplex ((ADD | SUB)^ multiplex)*
+  multiplex (('+' | '-')^ multiplex)*
 ;
  
 logic:
-  add ((EQUALS | NEQUALS | GT | LT | GE_OP | LE_OP)^ add)?
+  add (('==' | '!=' | '>' | '<' | '>=' | '<=')^ add)?
 ; 
  
 expression:
-  lvalue ASSIGN^ rvalue DELIMITER !
-| type IDENTIFIER
+  lvalue '='^ rvalue DELIMITER !
 | functionCall DELIMITER !
 | RETURN^ rvalue DELIMITER !
 | IF^ '('! rvalue ')'! expression (ELSE! expression)?
-| FOR^ '('! IDENTIFIER '=' rvalue DELIMITER! rvalue DELIMITER! (add|increment)? DELIMITER! ')' expression
 | WHILE^ '('! rvalue ')'! expression
 | '{'! expressionsList '}'!
 ;
  
 expressionsList:
-  (expression DELIMITER*)*  ->  ^(BLOCK expression*)
+  (expression ';'*)*  ->  ^(BLOCK expression*)
 ;
 
 argumentDeclaration:
   type IDENTIFIER^
 ;
-
 argumentsDeclaration:
   (argumentDeclaration (',' argumentDeclaration)*)?  ->  ^(SEMANTIC argumentDeclaration*)
 ;
-
 functionDeclaration:
   type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' DELIMITER*
     ->  ^(FUNCTION IDENTIFIER type argumentsDeclaration expressionsList)
 ;
  
 importDeclaration:
-  '#include' (s1=STRING) -> ^(INCLUDE $s1)
+  '#include' (s1=STRING | s2=INCLUDE_STRING)  ->  ^(INCLUDE $s1? $s2?)
 ;
  
 declaration:
