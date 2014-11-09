@@ -2,8 +2,7 @@ import generated.MathExprLexer;
 import org.antlr.runtime.CommonToken;
 
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.lang.Exception;
+
 /**
  * Created by V on 19.10.2014.
  */
@@ -48,6 +47,26 @@ public class SemanticChecker {
 
     public DataType check(AstNode node, Context context) throws Exception {
         switch (node.getType()) {
+            /*
+            ready:
+                      BLOCK
+                      FUNCTION
+                      IDENTIFIER
+                      NUMBER
+                      RETURN
+                      LETTER
+                      WHILE
+                      IF
+            TODO:
+                      FOR
+                      CALL
+                      DELIMITER
+                      DIGIT
+                      INDEX
+                      SEMANTIC
+                      ARGUMENTS
+                      STRING
+             */
             case MathExprLexer.PROGRAM: {
 
             }
@@ -69,7 +88,7 @@ public class SemanticChecker {
                     throw new Exception(String.format("Identifier " + name + " already exists."));
                 }
                 Identifier func = new Identifier(name, IdentifierType.FUNCTION, dataType, node);
-                context.setIdentifier(name,func);
+                context.setIdentifier(name, func);
                 context = new Context(context);
                 AstNode params = (AstNode) node.getChild(2);
                 for (int i = 0; i < params.getChildCount(); i++) {
@@ -78,7 +97,7 @@ public class SemanticChecker {
                     if (paramDataType == DataType.VOID) {
                         throw new Exception(String.format("In function " + name + " void param " + paramName));
                     }
-                    context.setIdentifier(paramName,new Identifier(paramName, IdentifierType.PARAM, paramDataType, (AstNode) params.getChild(i)));
+                    context.setIdentifier(paramName, new Identifier(paramName, IdentifierType.PARAM, paramDataType, (AstNode) params.getChild(i)));
                 }
                 context.function = func;
                 check((AstNode) node.getChild(3), context);
@@ -127,35 +146,8 @@ public class SemanticChecker {
                 }
                 return DataType.VOID;
             }
+            case MathExprLexer.
 
-            //TODO !!!
-            case MathExprLexer.ADD: {
-
-            }
-            case MathExprLexer.SUB: {
-
-            }
-            case MathExprLexer.MUL: {
-
-            }
-            case MathExprLexer.DIV: {
-
-            }
-            case MathExprLexer.GE_OP: {
-
-            }
-            case MathExprLexer.LE_OP: {
-
-            }
-            case MathExprLexer.NEQUALS: {
-
-            }
-            case MathExprLexer.EQUALS: {
-
-            }
-            case MathExprLexer.GT: {
-
-            }
 
             case MathExprLexer.LETTER: {
                 boolean compareOperation = true;
@@ -256,8 +248,9 @@ public class SemanticChecker {
         public Context(Context parentContext) {
             this.parentContext = parentContext;
         }
-        public Identifier getIdentifier(String name){
-            if(identifiers.containsKey(name))
+
+        public Identifier getIdentifier(String name) {
+            if (identifiers.containsKey(name))
                 return identifiers.get(name);
             else {
                 if (parentContext != null)
@@ -266,9 +259,11 @@ public class SemanticChecker {
                     return null;
             }
         }
-        public void setIdentifier(String name, Identifier value){
-            identifiers.put(name,value);
+
+        public void setIdentifier(String name, Identifier value) {
+            identifiers.put(name, value);
         }
+
         public Identifier InThisContext(String name) {
             if (identifiers.containsKey(name)) {
                 return identifiers.get(name);
@@ -297,7 +292,6 @@ public class SemanticChecker {
             return parentContext;
         }
     }
-
 
 
 }
