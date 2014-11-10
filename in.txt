@@ -7,18 +7,21 @@ void sum(int a, int b) {
 }
  
 void main(int argCount, string args) {
-  if (argCount == 2){
+  a = a+4/b-89*2;
+  if (argCount == 2)
     printf("%d", atoi(args[1]) + atoi(args[2]));
-    }
-  else{
+  else
     printf("incorrect data");
-    }
 
   printf("Hello!");
 }
  
 
-int[][] test(int[][] t) {
+int[] test(int[] t) {
+
+  while(true){
+    printf("sjkhfjgvbc");
+  }
   t(a[b][c]);
   t(a(b));
   t(a);

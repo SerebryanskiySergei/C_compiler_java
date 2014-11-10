@@ -10,6 +10,7 @@ tokens {
   RETURN = 'return' ;
   IF     = 'if'     ;
   ELSE   = 'else'   ;
+  FOR    = 'for'    ;
   WHILE  = 'while'  ;
 
   PROGRAM           ;
@@ -52,14 +53,17 @@ IDENTIFIER:
   LETTER (LETTER | DIGIT)*
 ;
 
-DELIMITER
-    :   ';';
+DELIMITER:  ';'     ;
 
-type0:
-  IDENTIFIER ('[' ']')*
+typeBasic:
+'int' ('[' ']')*
+|'double' ('[' ']')*
+|'char' ('[' ']')*
+|'void'
 ;
+
 type:
-  type0  ->  TYPE[$type0.text]
+  typeBasic  ->  TYPE[$typeBasic.text]
 ;
 
 term:
@@ -82,51 +86,68 @@ arrayIndex0:
 ;
 lvalue:  
   IDENTIFIER (arrayIndex0^ rvalue ']'!)*
-| IDENTIFIER
 ;
  
 rvalue:
   logic
 ;
- 
+
+increment:
+IDENTIFIER ('++'|'--')
+;
+
+ADD:            '+'         ;
+SUB:            '-'         ;
+MUL:            '*'         ;
+DIV:            '/'         ;
+REM:            '%'         ;
+AND:            '&'         ;
+OR:             '|'         ;
+ASSIGN:	        '='         ;
+COMPARE:    '>' | '>=' | '<' | '<=' | '==' | '!='   ;
+
 multiplex:
-  term (( '*' | '/' )^ term)*
+  term (( MUL | DIV )^ term)*
 ;
  
 add:
-  multiplex (('+' | '-')^ multiplex)*
+  multiplex ((ADD | SUB)^ multiplex)*
 ;
  
 logic:
-  add (('==' | '!=' | '>' | '<' | '>=' | '<=')^ add)?
+  add ((COMPARE)^ add)?
 ; 
  
 expression:
-  lvalue '='^ rvalue DELIMITER !
+  lvalue ASSIGN^ rvalue DELIMITER !
+| type IDENTIFIER
 | functionCall DELIMITER !
 | RETURN^ rvalue DELIMITER !
 | IF^ '('! rvalue ')'! expression (ELSE! expression)?
+| FOR^ '('! IDENTIFIER ASSIGN rvalue DELIMITER! rvalue DELIMITER! (add|increment)? DELIMITER! ')' expression
 | WHILE^ '('! rvalue ')'! expression
 | '{'! expressionsList '}'!
 ;
  
 expressionsList:
-  (expression ';'*)*  ->  ^(BLOCK expression*)
+  (expression DELIMITER*)*  ->  ^(BLOCK expression*)
 ;
 
 argumentDeclaration:
   type IDENTIFIER^
 ;
+
 argumentsDeclaration:
   (argumentDeclaration (',' argumentDeclaration)*)?  ->  ^(SEMANTIC argumentDeclaration*)
 ;
+
 functionDeclaration:
   type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' DELIMITER*
     ->  ^(FUNCTION IDENTIFIER type argumentsDeclaration expressionsList)
 ;
  
 importDeclaration:
-  '#include' (s1=STRING | s2=INCLUDE_STRING)  ->  ^(INCLUDE $s1? $s2?)
+  '#include' (s1=STRING) -> ^(INCLUDE $s1)
 ;
  
 declaration:

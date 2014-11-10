@@ -31,15 +31,16 @@ public class AstNode extends CommonTree {
     @Override
     public String toString() {
         String result = super.toString();
-        if (dataType != SemanticChecker.DataType.VOID) {
+        if (dataType!=null && dataType != SemanticChecker.DataType.VOID){
             result += ", " + SemanticChecker.dataTypeToString(dataType);
         }
         return result;
     }
 
-    public class AstNodeAdapter extends CommonTreeAdaptor {
+    public static class AstNodeAdapter extends CommonTreeAdaptor{
         @Override
         public Object create(Token payload) {
+            //return super.create(payload);
             return new AstNode(payload);
         }
     }

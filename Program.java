@@ -1,12 +1,9 @@
+import java.io.*;
+
 import generated.MathExprLexer;
 import generated.MathExprParser;
-import org.antlr.runtime.ANTLRFileStream;
-import org.antlr.runtime.ANTLRReaderStream;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.tree.Tree;
-
-import java.io.InputStreamReader;
+import org.antlr.runtime.*;
+import org.antlr.runtime.tree.*;
 
 
 public class Program {
@@ -18,11 +15,19 @@ public class Program {
             MathExprLexer lexer = new MathExprLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             MathExprParser parser = new MathExprParser(tokens);
-            //parser.start();
+            parser.setTreeAdaptor(new AstNode.AstNodeAdapter()); //!!!
+
             Tree program = (Tree) parser.start().getTree();
             AstNodePrinter.Print(program);
+
+            //parser.start();
+
+            SemanticChecker c = new SemanticChecker();
+            c.check((AstNode)program, null);
+
             //System.out.println("OK!");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }

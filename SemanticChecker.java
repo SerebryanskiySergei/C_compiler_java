@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class SemanticChecker {
 
-    private static DataType stringToDataType(String type) throws Exception {
+    private static DataType stringToDataType(String type) throws SemanticException {
         if (type.equals("int")) {
             return DataType.INT;
         } else if (type.equals("double")) {
@@ -18,7 +18,7 @@ public class SemanticChecker {
         } else if (type.equals("void") || type.equals("")) {
             return DataType.VOID;
         } else {
-            throw new Exception("Invalid data type"); //TODO
+            throw new SemanticException("Unknown type");
         }
     }
 
@@ -45,7 +45,7 @@ public class SemanticChecker {
         convert.addChild(new AstNode(new CommonToken(MathExprLexer.IDENTIFIER, dataTypeToString(dataType))));
     }
 
-    public DataType check(AstNode node, Context context) throws Exception {
+    public DataType check(AstNode node, Context context) throws SemanticException {
         switch (node.getType()) {
             /*
             ready:
@@ -85,7 +85,7 @@ public class SemanticChecker {
                 String name = node.getChild(1).getText();
                 Identifier identifier = context.InThisContext(name);//TODO context[name]
                 if (identifier != null) {
-                    throw new Exception(String.format("Identifier " + name + " already exists."));
+                    throw new SemanticException(String.format("Identifier " + name + " already exists."));
                 }
                 Identifier func = new Identifier(name, IdentifierType.FUNCTION, dataType, node);
                 context.setIdentifier(name, func);
@@ -95,28 +95,34 @@ public class SemanticChecker {
                     DataType paramDataType = stringToDataType(params.getChild(i).getText());
                     String paramName = params.getChild(i).getChild(0).getText();
                     if (paramDataType == DataType.VOID) {
-                        throw new Exception(String.format("In function " + name + " void param " + paramName));
+                        throw new SemanticException(String.format("In function " + name + " void param " + paramName));
+                        
                     }
                     context.setIdentifier(paramName, new Identifier(paramName, IdentifierType.PARAM, paramDataType, (AstNode) params.getChild(i)));
                 }
                 context.function = func;
                 check((AstNode) node.getChild(3), context);
                 return DataType.VOID;
-
             }
 
             case MathExprLexer.IDENTIFIER: {
                 Identifier identifier = context.InThisContext(node.getText());
-                if (identifier == null)
-                    throw new Exception(String.format("Unknown identifier " + node.getText()));
+                if (identifier == null) {
+                    throw new SemanticException(String.format(String.format("Unknown identifier " + node.getText())));
+                    
+                }
                 if (identifier.identifierType == IdentifierType.FUNCTION) {
-                    if (identifier.dataType == DataType.VOID)
-                        throw new Exception(String.format("Function " + identifier.name + " returns void"));
-                    if (identifier.node.getChild(1).getChildCount() > 0)
-                        throw new Exception(String.format("No params for function" + identifier.name + " call"));
+                    if (identifier.dataType == DataType.VOID) {
+                        throw new SemanticException(String.format(String.format("Function " + identifier.name + " returns void")));
+                        
+                    }
+                        if (identifier.node.getChild(1).getChildCount() > 0) {
+                            throw new SemanticException(String.format(String.format("No params for function" + identifier.name + " call")));
+                            
+                        }
                     AstNode call = new AstNode(new CommonToken(MathExprLexer.CALL));
                     call.addChild(node);
-                    call.addChild(new AstNode(new CommonToken(MathExprLexer.ARGUMENTS)));
+                    call.addChild(new AstNode(new CommonToken(MathExprLexer.SEMANTIC)));
                     node.parent.setChild(node.childIndex, call);
 
                     node.dataType = identifier.dataType;
@@ -133,42 +139,64 @@ public class SemanticChecker {
             }
 
             case MathExprLexer.RETURN: {
-                if (context.function == null)
-                    throw new Exception(String.format("Return not in function in line " + node.getLine()));
-
+                if (context.function == null) {
+                    throw new SemanticException(String.format(String.format("Return not in function in line " + node.getLine())));
+                    
+                }
                 DataType returnDataType = check((AstNode) node.getChild(0), context);
                 if (context.function.dataType != returnDataType) {
                     if (context.function.dataType == DataType.DOUBLE && returnDataType == DataType.INT)
                         convert((AstNode) node.getChild(0), DataType.DOUBLE);
-                    else
-                        throw new Exception(String.format("Return incopotible types " + dataTypeToString(context.function.dataType)
-                                + " " + dataTypeToString(returnDataType)));
+                    else {
+                        throw new SemanticException(String.format(String.format("Return incopotible types " + dataTypeToString(context.function.dataType)
+                                + " " + dataTypeToString(returnDataType))));
+                        
+                    }
                 }
                 return DataType.VOID;
             }
-            case MathExprLexer.
 
+            //TODO !!!
+            case MathExprLexer.ADD: {
+
+            }
+//            case MathExprLexer.SUB: {
+//
+//            }
+//            case MathExprLexer.MUL: {
+//
+//            }
+//            case MathExprLexer.DIV: {
+//
+//            }
+//            case MathExprLexer.COMPARE: {
+//
+//            }
 
             case MathExprLexer.LETTER: {
                 boolean compareOperation = true;
                 //TODO !!!
-                switch (node.getType()) {
-                    case MathExprLexer.ADD:
-                    case MathExprLexer.SUB:
-                    case MathExprLexer.MUL:
-                    case MathExprLexer.DIV:
-                        compareOperation = false;
-                        break;
-                }
+//                switch (node.getType()) {
+//                    case MathExprLexer.ADD:
+//                    case MathExprLexer.SUB:
+//                    case MathExprLexer.MUL:
+//                    case MathExprLexer.DIV:
+//                        compareOperation = false;
+//                        break;
+//                }
 
                 DataType leftDataType = check((AstNode) node.getChild(0), context);
                 DataType rightDataType = check((AstNode) node.getChild(1), context);
-                if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT)
-                    throw new Exception(String.format("Left operand invalid type for operation " + node.getText() +
-                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex()));
-                if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT)
-                    throw new Exception(String.format("Right operand invalid type for operation " + node.getText() +
-                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex()));
+                if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT) {
+                    throw new SemanticException(String.format(String.format("Left operand invalid type for operation " + node.getText() +
+                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
+                    
+                }
+                if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT) {
+                    throw new SemanticException(String.format(String.format("Right operand invalid type for operation " + node.getText() +
+                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
+                    
+                }
                 if (leftDataType == DataType.DOUBLE) {
                     if (rightDataType == DataType.INT)
                         convert((AstNode) node.getChild(1), DataType.DOUBLE);
@@ -187,8 +215,10 @@ public class SemanticChecker {
 
             case MathExprLexer.WHILE: {
                 DataType conditionDataType = check((AstNode) node.getChild(0), context);
-                if (conditionDataType != DataType.BOOL)
-                    throw new Exception(String.format("In while condition type is " + dataTypeToString(conditionDataType)));
+                if (conditionDataType != DataType.BOOL) {
+                    throw new SemanticException(String.format(String.format("In while condition type is " + dataTypeToString(conditionDataType))));
+                    
+                }
                 //context = new Context(context);
                 check((AstNode) node.getChild(1), context);
                 return DataType.VOID;
@@ -196,8 +226,10 @@ public class SemanticChecker {
 
             case MathExprLexer.IF: {
                 DataType conditionDataType = check((AstNode) node.getChild(0), context);
-                if (conditionDataType != DataType.BOOL)
-                    throw new Exception(String.format("In if condition type is " + dataTypeToString(conditionDataType)));
+                if (conditionDataType != DataType.BOOL) {
+                    throw new SemanticException(String.format(String.format("In if condition type is " + dataTypeToString(conditionDataType))));
+                    
+                }
                 //context = new Context(context);
                 check((AstNode) node.getChild(1), context);
                 if (node.getChildCount() == 3)
@@ -206,15 +238,17 @@ public class SemanticChecker {
             }
 
             //TODO !!!!
-            case MathExprLexer.FOR: {
+            /*case MathExprLexer.FOR: {
 
-            }
+            }*/
 
-            default: {
-                throw new Exception("Unknown token type");
-            }
-            break;
+            /*default: {
+                throw new SemanticException(String.format(String.format("Unknown token type")));
+                
+                return DataType.VOID;
+            }*/
         }
+        return  DataType.VOID;
     }
 
     public enum IdentifierType {
