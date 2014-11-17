@@ -1,5 +1,6 @@
 import generated.MathExprLexer;
 import org.antlr.runtime.CommonToken;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.HashMap;
 
@@ -155,35 +156,35 @@ public class SemanticChecker {
                 }
                 return DataType.VOID;
             }
+            case MathExprLexer.ASSIGN:{
+                DataType firstDT =  stringToDataType(node.getChild(0).getText());
+                DataType secondDT =  stringToDataType(node.getChild(1).getText());
+                if (firstDT!=secondDT)
+                    throw new SemanticException("Incompatible types ");
+            }
 
             //TODO !!!
-            case MathExprLexer.ADD: {
-
+            case MathExprLexer.ADD:
+            case MathExprLexer.SUB:
+            case MathExprLexer.MUL:
+            case MathExprLexer.DIV:
+            case MathExprLexer.COMPARE: {
+                DataType firstDT =  stringToDataType(node.getChild(0).getText());
+                DataType secondDT =  stringToDataType(node.getChild(1).getText());
+                if (firstDT!=secondDT)
+                    throw new SemanticException("Incompatible types ");
             }
-//            case MathExprLexer.SUB: {
-//
-//            }
-//            case MathExprLexer.MUL: {
-//
-//            }
-//            case MathExprLexer.DIV: {
-//
-//            }
-//            case MathExprLexer.COMPARE: {
-//
-//            }
 
             case MathExprLexer.LETTER: {
                 boolean compareOperation = true;
-                //TODO !!!
-//                switch (node.getType()) {
-//                    case MathExprLexer.ADD:
-//                    case MathExprLexer.SUB:
-//                    case MathExprLexer.MUL:
-//                    case MathExprLexer.DIV:
-//                        compareOperation = false;
-//                        break;
-//                }
+                switch (node.getType()) {
+                    case MathExprLexer.ADD:
+                    case MathExprLexer.SUB:
+                    case MathExprLexer.MUL:
+                    case MathExprLexer.DIV:
+                        compareOperation = false;
+                        break;
+                }
 
                 DataType leftDataType = check((AstNode) node.getChild(0), context);
                 DataType rightDataType = check((AstNode) node.getChild(1), context);
@@ -238,17 +239,14 @@ public class SemanticChecker {
             }
 
             //TODO !!!!
-            /*case MathExprLexer.FOR: {
+            case MathExprLexer.FOR: {
 
-            }*/
+            }
 
-            /*default: {
+            default: {
                 throw new SemanticException(String.format(String.format("Unknown token type")));
-                
-                return DataType.VOID;
-            }*/
+            }
         }
-        return  DataType.VOID;
     }
 
     public enum IdentifierType {

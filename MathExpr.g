@@ -120,6 +120,7 @@ logic:
  
 expression:
   lvalue ASSIGN^ rvalue DELIMITER !
+| type! IDENTIFIER ASSIGN^ rvalue DELIMITER!
 | type IDENTIFIER
 | functionCall DELIMITER !
 | RETURN^ rvalue DELIMITER !

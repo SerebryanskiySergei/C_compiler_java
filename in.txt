@@ -1,8 +1,8 @@
-#include <stdio>
-#include "test.h"
- 
 
-void sum(int a, int b) {
+void sum(int a, int b,double c) {
+int x =5;
+int y = 3.2;
+  c=a;
   return a+b;
 }
  

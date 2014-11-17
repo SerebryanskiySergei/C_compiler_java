@@ -1,58 +1,57 @@
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 MathExpr.g 2014-11-10 17:13:41
 package generated;
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 MathExpr.g 2014-11-10 00:18:34
-
 import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
 public class MathExprLexer extends Lexer {
-    public static final int FUNCTION=13;
-    public static final int INCLUDE_STRING=23;
-    public static final int WHILE=8;
-    public static final int LETTER=20;
-    public static final int FOR=7;
-    public static final int SUB=27;
-    public static final int AND=31;
-    public static final int EOF=-1;
-    public static final int TYPE=11;
-    public static final int IF=5;
-    public static final int INDEX=17;
-    public static final int IDENTIFIER=24;
-    public static final int INCLUDE=10;
-    public static final int RETURN=4;
-    public static final int COMPARE=34;
-    public static final int DIGIT=19;
-    public static final int SEMANTIC=12;
     public static final int ADD=26;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__46=46;
-    public static final int T__47=47;
-    public static final int T__44=44;
-    public static final int ARGUMENTS=14;
-    public static final int T__45=45;
-    public static final int T__48=48;
+    public static final int LETTER=20;
+    public static final int INCLUDE_STRING=23;
     public static final int ELSE=6;
+    public static final int INDEX=17;
+    public static final int INCLUDE=10;
+    public static final int IF=5;
+    public static final int TYPE=11;
+    public static final int SUB=27;
     public static final int NUMBER=21;
-    public static final int REM=30;
     public static final int MUL=28;
-    public static final int WS=18;
-    public static final int T__35=35;
-    public static final int T__36=36;
+    public static final int FOR=7;
+    public static final int BLOCK=16;
+    public static final int FUNCTION=13;
+    public static final int AND=31;
+    public static final int COMPARE=34;
+    public static final int PROGRAM=9;
+    public static final int CALL=15;
+    public static final int ASSIGN=33;
+    public static final int DELIMITER=25;
+    public static final int RETURN=4;
     public static final int T__37=37;
     public static final int T__38=38;
     public static final int T__39=39;
-    public static final int BLOCK=16;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int IDENTIFIER=24;
+    public static final int WS=18;
+    public static final int EOF=-1;
     public static final int OR=32;
-    public static final int ASSIGN=33;
-    public static final int PROGRAM=9;
-    public static final int CALL=15;
+    public static final int SEMANTIC=12;
+    public static final int DIGIT=19;
     public static final int DIV=29;
-    public static final int DELIMITER=25;
+    public static final int ARGUMENTS=14;
+    public static final int T__48=48;
+    public static final int T__44=44;
+    public static final int T__45=45;
     public static final int STRING=22;
+    public static final int T__46=46;
+    public static final int WHILE=8;
+    public static final int T__47=47;
+    public static final int REM=30;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__42=42;
+    public static final int T__43=43;
 
     // delegates
     // delegators
