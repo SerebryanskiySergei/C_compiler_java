@@ -17,7 +17,7 @@ public class Program {
             MathExprParser parser = new MathExprParser(tokens);
             parser.setTreeAdaptor(new AstNode.AstNodeAdapter()); //!!!
 
-            Tree program = (Tree) parser.start().getTree();
+            Tree program = (Tree) parser.execute().getTree();
             AstNodePrinter.Print(program);
 
             //parser.start();

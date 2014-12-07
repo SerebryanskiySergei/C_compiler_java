@@ -4,7 +4,7 @@
 cd "%~dp0"
 
 
-set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_25
+set JAVA_HOME=D:\Applications\JDK 7\
 
 set ANTLR_JAR=.\lib\antlr-3.2.jar
 rem set ANTLR_JAR=.\lib\antlr-3.4-complete.jar

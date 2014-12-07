@@ -123,7 +123,7 @@ public class SemanticChecker {
                         }
                     AstNode call = new AstNode(new CommonToken(MathExprLexer.CALL));
                     call.addChild(node);
-                    call.addChild(new AstNode(new CommonToken(MathExprLexer.SEMANTIC)));
+                    call.addChild(new AstNode(new CommonToken(MathExprLexer.PARAMS)));
                     node.parent.setChild(node.childIndex, call);
 
                     node.dataType = identifier.dataType;
@@ -134,7 +134,7 @@ public class SemanticChecker {
                 }
             }
 
-            case MathExprLexer.NUMBER: {
+            case MathExprLexer.DIGIT: {
                 node.dataType = node.getText().contains(".") ? DataType.DOUBLE : DataType.INT;
                 return node.dataType;
             }
@@ -167,52 +167,51 @@ public class SemanticChecker {
             case MathExprLexer.ADD:
             case MathExprLexer.SUB:
             case MathExprLexer.MUL:
-            case MathExprLexer.DIV:
-            case MathExprLexer.COMPARE: {
+            case MathExprLexer.DIV:{
                 DataType firstDT =  stringToDataType(node.getChild(0).getText());
                 DataType secondDT =  stringToDataType(node.getChild(1).getText());
                 if (firstDT!=secondDT)
                     throw new SemanticException("Incompatible types ");
             }
 
-            case MathExprLexer.LETTER: {
-                boolean compareOperation = true;
-                switch (node.getType()) {
-                    case MathExprLexer.ADD:
-                    case MathExprLexer.SUB:
-                    case MathExprLexer.MUL:
-                    case MathExprLexer.DIV:
-                        compareOperation = false;
-                        break;
-                }
-
-                DataType leftDataType = check((AstNode) node.getChild(0), context);
-                DataType rightDataType = check((AstNode) node.getChild(1), context);
-                if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT) {
-                    throw new SemanticException(String.format(String.format("Left operand invalid type for operation " + node.getText() +
-                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
-                    
-                }
-                if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT) {
-                    throw new SemanticException(String.format(String.format("Right operand invalid type for operation " + node.getText() +
-                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
-                    
-                }
-                if (leftDataType == DataType.DOUBLE) {
-                    if (rightDataType == DataType.INT)
-                        convert((AstNode) node.getChild(1), DataType.DOUBLE);
-                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
-                    return node.dataType;
-                }
-                if (rightDataType == DataType.DOUBLE) {
-                    if (leftDataType == DataType.INT)
-                        convert((AstNode) node.getChild(0), DataType.DOUBLE);
-                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
-                    return node.dataType;
-                }
-                node.dataType = compareOperation ? DataType.BOOL : DataType.INT;
-                return node.dataType;
-            }
+//            case MathExprLexer.ASSIGN: {
+//                boolean compareOperation = true;
+//                switch (node.getType()) {
+//                    case MathExprLexer.ADD:
+//                    case MathExprLexer.SUB:
+//                    case MathExprLexer.MUL:
+//                    case MathExprLexer.DIV:
+//                        compareOperation = false;
+//                        break;
+//                }
+//
+//                DataType leftDataType = check((AstNode) node.getChild(0), context);
+//                DataType rightDataType = check((AstNode) node.getChild(1), context);
+//                if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT) {
+//                    throw new SemanticException(String.format(String.format("Left operand invalid type for operation " + node.getText() +
+//                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
+//
+//                }
+//                if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT) {
+//                    throw new SemanticException(String.format(String.format("Right operand invalid type for operation " + node.getText() +
+//                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
+//
+//                }
+//                if (leftDataType == DataType.DOUBLE) {
+//                    if (rightDataType == DataType.INT)
+//                        convert((AstNode) node.getChild(1), DataType.DOUBLE);
+//                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
+//                    return node.dataType;
+//                }
+//                if (rightDataType == DataType.DOUBLE) {
+//                    if (leftDataType == DataType.INT)
+//                        convert((AstNode) node.getChild(0), DataType.DOUBLE);
+//                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
+//                    return node.dataType;
+//                }
+//                node.dataType = compareOperation ? DataType.BOOL : DataType.INT;
+//                return node.dataType;
+//            }
 
             case MathExprLexer.WHILE: {
                 DataType conditionDataType = check((AstNode) node.getChild(0), context);

@@ -3,168 +3,154 @@ grammar MathExpr;
 options {
   language=Java;
   output=AST;
+  ASTLabelType = AstNode;
   backtrack=true;
+  memoize=true;
 }
- 
+
+
 tokens {
-  RETURN = 'return' ;
-  IF     = 'if'     ;
-  ELSE   = 'else'   ;
-  FOR    = 'for'    ;
-  WHILE  = 'while'  ;
-
-  PROGRAM           ;
-  INCLUDE           ;
-  TYPE              ;
-  SEMANTIC          ;
-  FUNCTION          ;
-  ARGUMENTS         ;
-  CALL              ;
-  BLOCK             ;
-  INDEX             ;
+  UNKNOWN                   ;
+  BLOCK                     ;
+  PARAMS                    ;
+  CALL                      ;
+  CONVERT                   ;
+  IF          = 'if'        ;
+  ELSE        = 'else'      ;
+  FOR         = 'for'       ;
+  WHILE       = 'while'     ;
+  AND         = '&&'        ;
+  OR          = '||'        ;
+  NOT         = '!'         ;
+  XOR         = 'xor'       ;
+  INT_DIV     = 'div'       ;
+  INT_MOD     = 'mod'       ;
+  SHR         = 'shr'       ;
+  SHL         = 'shl'       ;
+  IN          = 'in'        ;
+  VAR         = 'var'       ;
+  RETURN      = 'return'    ;
+  ARRAY       = 'array'	    ;
+  FUNCTION    = 'function'  ;
+  PROGRAM     = 'program'   ;
+  TRUE        = 'true'      ;
+  FALSE       = 'false'     ;
+  DO	      = 'do'    	;
+  COUNT       = 'count'     ;
 }
- 
 
-WS:
-  (' ' | '\t' | '\f' | '\r' | '\n')+ { $channel=HIDDEN; }
-;
- 
-fragment DIGIT:
-  '0'..'9'
-;
- 
-fragment LETTER:
-  'a'..'z' | 'A'..'Z' | '_'
-;
- 
-NUMBER:
-  DIGIT+ ('.' DIGIT+)?
-;
- 
-STRING:
-  '"' ('\\"' | '\\\\' | ~'"')* '"'
-;
+WS: ( ' ' | '\t' | '\f' | '\r' | '\n' )+ { $channel=HIDDEN;} ;
 
-INCLUDE_STRING:
-  '<' ~'>'* '>'
-;
- 
-IDENTIFIER:
-  LETTER (LETTER | DIGIT)*
-;
 
-DELIMITER:  ';'     ;
+COMMENT: '/*' ( options { greedy=false; } : . )* '*/' { $channel=HIDDEN;} ;
 
-typeBasic:
-'int' ('[' ']')*
-|'double' ('[' ']')*
-|'char' ('[' ']')*
-|'void'
-;
+fragment DIGIT: '0'..'9';
+fragment LETTER: 'a'..'z' | 'A'..'Z' | '_' ;
 
-type:
-  typeBasic  ->  TYPE[$typeBasic.text]
+NUMBER: DIGIT+ ('.' DIGIT+)? ;
+STRING: '"' ('\\"' | '\\\\' | ~'"')* '"' ;
+
+IDENTIFIER: LETTER (LETTER | DIGIT)*;
+
+ADD:      '+'   ;
+SUB:      '-'   ;
+MUL:      '*'   ;
+DIV:      '/'   ;
+BIT_AND:  '&'   ;
+BIT_OR:   '|'   ;
+ASSIGN:	  '='   ;
+NOTEQUALS:'!='  ;
+EQUALS:   '=='  ;
+GT:       '>'   ;
+LT:       '<'   ;
+GE:       '>='  ;
+LE:       '<='  ;
+
+
+identifier: IDENTIFIER ;
+
+group:
+  '('! term ')'!
+  | DIGIT
+  | TRUE
+  | FALSE
+  | identifier
+  | call
 ;
 
-term:
-  NUMBER
-| STRING
-| lvalue
-| functionCall
-| '('! logic ')'!
-;
- 
-arguments:
-  (rvalue (',' rvalue)*)?  ->  ^(ARGUMENTS rvalue*)
-;
-functionCall:
-  IDENTIFIER '(' arguments ')'  ->  ^(CALL IDENTIFIER arguments)
+parameters: ( term (','! term)* )?  ;
+
+call: identifier '(' parameters ')'  -> ^(CALL identifier ^(PARAMS parameters?)) ;
+
+not_logic:   group | NOT^ not_logic ;
+
+multiplex:  not_logic ( ( MUL | DIV | BIT_AND | INT_DIV | INT_MOD )^ not_logic )*  ;
+
+add:   multiplex  ( ( ADD | SUB | BIT_OR )^ multiplex  )*                   ;
+
+compare: add ( ( GE | LE |  NOTEQUALS | EQUALS | GT | LT )^ add )?   ;
+
+and_logic: compare ( AND^ compare )*    ;
+
+or_logic: and_logic ( OR^ and_logic )*  ;
+
+term: or_logic  ;
+
+varDeclaration: identifier (ASSIGN^ term)?;
+
+varsDeclaration: identifier varDeclaration ( ',' varDeclaration )* -> ^(VAR ^(identifier varDeclaration+)) ;
+
+
+blockExpr: '{'! expressionsList '}'! ;
+
+termOrTrue:
+  term
+  | ( ) -> TRUE
 ;
 
-arrayIndex0:
-  '['  ->  INDEX["[]"]
-;
-lvalue:  
-  IDENTIFIER (arrayIndex0^ rvalue ']'!)*
-;
- 
-rvalue:
-  logic
+expressionBase:
+  identifier ASSIGN^ term
+| call
+| varsDeclaration
 ;
 
-increment:
-IDENTIFIER ('++'|'--')
-;
-
-ADD:            '+'         ;
-SUB:            '-'         ;
-MUL:            '*'         ;
-DIV:            '/'         ;
-REM:            '%'         ;
-AND:            '&'         ;
-OR:             '|'         ;
-ASSIGN:	        '='         ;
-COMPARE:    '>' | '>=' | '<' | '<=' | '==' | '!='   ;
-
-multiplex:
-  term (( MUL | DIV )^ term)*
-;
- 
-add:
-  multiplex ((ADD | SUB)^ multiplex)*
-;
- 
-logic:
-  add ((COMPARE)^ add)?
-; 
- 
 expression:
-  lvalue ASSIGN^ rvalue DELIMITER !
-| type! IDENTIFIER ASSIGN^ rvalue DELIMITER!
-| type IDENTIFIER
-| functionCall DELIMITER !
-| RETURN^ rvalue DELIMITER !
-| IF^ '('! rvalue ')'! expression (ELSE! expression)?
-| FOR^ '('! IDENTIFIER ASSIGN rvalue DELIMITER! rvalue DELIMITER! (add|increment)? DELIMITER! ')' expression
-| WHILE^ '('! rvalue ')'! expression
-| '{'! expressionsList '}'!
-;
- 
-expressionsList:
-  (expression DELIMITER*)*  ->  ^(BLOCK expression*)
+  expressionBase ';'!
+| IF^ '('! term ')'! expression (ELSE! expression)?
+| WHILE^ '('! term ')'! expression
+| FOR^ '('! expressionsList2 ';'! termOrTrue ';'! expressionsList2 ')'! expression
+| DO^ expression WHILE '(' term ')' -> ^(DO expression ^(WHILE term ))
+| RETURN^ term ';'!
+| call ';'!
+| blockExpr
+| array_declaration
 ;
 
-argumentDeclaration:
-  type IDENTIFIER^
+expressionsList: ( expression ( ';'* expression )* )? ';'*  ->  ^(BLOCK expression*)  ;
+expressionsList2: ( expressionBase ( ',' expressionBase )* )?  ->  ^(BLOCK expressionBase*)  ;
+
+array_type: identifier '[' term? ']' -> ^(ARRAY identifier ^(COUNT term?) );
+array_initialising: identifier ('<' term (',' term)* '>')? -> ^(identifier term*);
+array_declaration:
+  array_type array_initialising (',' array_initialising)* -> ^(array_type array_initialising+)
 ;
 
-argumentsDeclaration:
-  (argumentDeclaration (',' argumentDeclaration)*)?  ->  ^(SEMANTIC argumentDeclaration*)
-;
-
+parameterDeclaration: identifier^ identifier ;
+parametersDeclaration: parameterDeclaration ( ','! parameterDeclaration )* ;
+func_return_type: identifier;
 functionDeclaration:
-  type IDENTIFIER '(' argumentsDeclaration ')' '{' expressionsList '}' DELIMITER*
-    ->  ^(FUNCTION IDENTIFIER type argumentsDeclaration expressionsList)
+ func_return_type identifier '(' parametersDeclaration? ')'
+  '{' expressionsList '}'
+  -> ^(FUNCTION func_return_type identifier ^(PARAMS parametersDeclaration?) expressionsList)
 ;
- 
-importDeclaration:
-  '#include' (s1=STRING) -> ^(INCLUDE $s1)
+
+expressionOrFunctionDeclaration: functionDeclaration | expression ;
+
+program: ( expressionOrFunctionDeclaration ';'!* )* ;
+
+result: program -> ^(PROGRAM program) ;
+
+execute:
+  result
 ;
- 
-declaration:
-  ( functionDeclaration | importDeclaration )
-;
- 
-declarations:
-  declaration*
-;
- 
-code:
-  declarations
-;
- 
-start:
-  code
-  EOF
-    ->  ^(PROGRAM code)
-;
+
