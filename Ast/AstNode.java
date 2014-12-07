@@ -1,3 +1,4 @@
+package Ast;
 
 import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
@@ -6,7 +7,7 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
 /**
  * Created by V on 19.10.2014.
  */
-public class AstNode extends CommonTree {
+public class AstNode extends CommonTree  {
 
     public SemanticChecker.DataType dataType;
 
@@ -38,7 +39,7 @@ public class AstNode extends CommonTree {
         return result;
     }
 
-    public static class AstNodeAdapter extends CommonTreeAdaptor{
+    public static class AstNodeTreeAdapter extends CommonTreeAdaptor{
         @Override
         public Object create(Token payload) {
             //return super.create(payload);

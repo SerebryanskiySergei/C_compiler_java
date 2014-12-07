@@ -1,6 +1,7 @@
+package Ast;
+
 import generated.MathExprLexer;
 import org.antlr.runtime.CommonToken;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.HashMap;
 
@@ -185,27 +186,27 @@ public class SemanticChecker {
 //                        break;
 //                }
 //
-//                DataType leftDataType = check((AstNode) node.getChild(0), context);
-//                DataType rightDataType = check((AstNode) node.getChild(1), context);
+//                DataType leftDataType = check((Ast.AstNode) node.getChild(0), context);
+//                DataType rightDataType = check((Ast.AstNode) node.getChild(1), context);
 //                if (leftDataType != DataType.DOUBLE && leftDataType != DataType.INT) {
-//                    throw new SemanticException(String.format(String.format("Left operand invalid type for operation " + node.getText() +
+//                    throw new Ast.SemanticException(String.format(String.format("Left operand invalid type for operation " + node.getText() +
 //                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
 //
 //                }
 //                if (rightDataType != DataType.DOUBLE && rightDataType != DataType.INT) {
-//                    throw new SemanticException(String.format(String.format("Right operand invalid type for operation " + node.getText() +
+//                    throw new Ast.SemanticException(String.format(String.format("Right operand invalid type for operation " + node.getText() +
 //                            ", line = " + node.getLine() + ", pos = " + node.getTokenStartIndex())));
 //
 //                }
 //                if (leftDataType == DataType.DOUBLE) {
 //                    if (rightDataType == DataType.INT)
-//                        convert((AstNode) node.getChild(1), DataType.DOUBLE);
+//                        convert((Ast.AstNode) node.getChild(1), DataType.DOUBLE);
 //                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
 //                    return node.dataType;
 //                }
 //                if (rightDataType == DataType.DOUBLE) {
 //                    if (leftDataType == DataType.INT)
-//                        convert((AstNode) node.getChild(0), DataType.DOUBLE);
+//                        convert((Ast.AstNode) node.getChild(0), DataType.DOUBLE);
 //                    node.dataType = compareOperation ? DataType.BOOL : DataType.DOUBLE;
 //                    return node.dataType;
 //                }

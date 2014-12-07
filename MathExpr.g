@@ -3,7 +3,7 @@ grammar MathExpr;
 options {
   language=Java;
   output=AST;
-  ASTLabelType = AstNode;
+  ASTLabelType = Ast.AstNode;
   backtrack=true;
   memoize=true;
 }

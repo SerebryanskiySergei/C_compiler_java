@@ -1,5 +1,8 @@
 import java.io.*;
 
+import Ast.AstNode;
+import Ast.AstNodePrinter;
+import Ast.SemanticChecker;
 import generated.MathExprLexer;
 import generated.MathExprParser;
 import org.antlr.runtime.*;
@@ -15,7 +18,7 @@ public class Program {
             MathExprLexer lexer = new MathExprLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             MathExprParser parser = new MathExprParser(tokens);
-            parser.setTreeAdaptor(new AstNode.AstNodeAdapter()); //!!!
+            parser.setTreeAdaptor(new AstNode.AstNodeTreeAdapter()); //!!!
 
             Tree program = (Tree) parser.execute().getTree();
             AstNodePrinter.Print(program);
